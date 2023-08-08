@@ -15,4 +15,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
     - Nicole Schnurr 🐾😎✌️
     - Mike Lambert 🎉
 
+- [Matt Hughes](https://github.com/mjhcodes) 🌲
+
 ## Code of Conduct Contacts
