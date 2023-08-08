@@ -9,5 +9,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Mentors
 
     - Nicole Schnurr 🐾😎✌️
+    - Mike Lambert 🎉
 
 ## Code of Conduct Contacts
