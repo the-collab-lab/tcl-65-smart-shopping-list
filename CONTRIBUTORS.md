@@ -9,6 +9,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Patty Otero](https://github.com/patty-rose) 🥳
 - [Lydia Dunning](https://github.com/lydiadunning) ✨
 - [Isaiah Sanchez](https://github.com/isaiahasanchez) 🤠
+- [Shannone Ball](https://github.com/shannonerhea) 🥳
 
 ## Mentors
 
