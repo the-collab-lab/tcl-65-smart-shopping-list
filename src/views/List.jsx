@@ -16,7 +16,10 @@ export function List({ data }) {
 					// data.map(item => (
 					// 	item.name
 					// ))
-					//
+					/*data.map(item => (
+						<ListItem key={item.id} text={item.name} />
+					
+					))*/
 				}
 			</ul>
 		</>
