@@ -17,8 +17,8 @@ export function List({ data }) {
 					// data.map(item => (
 					// 	item.name
 					// ))
-					data.map((item, index) => (
-						<ListItem key={index} name={item.name} />
+					data.map((item) => (
+						<ListItem name={item.name} />
 					))
 				}
 			</ul>
