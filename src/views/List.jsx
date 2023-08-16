@@ -9,6 +9,7 @@ export function List({ data }) {
 			<ul>
 				{
 					/**
+					 * -key={item.id}
 					 * TODO: write some JavaScript that renders the `data` array
 					 * using the `ListItem` component that's imported at the top
 					 * of this file.
@@ -16,10 +17,9 @@ export function List({ data }) {
 					// data.map(item => (
 					// 	item.name
 					// ))
-					/*data.map((item) => (
-						<ListItem key={item.id} text={item.name} />
-					
-					))*/
+					data.map((item, index) => (
+						<ListItem key={index} name={item.name} />
+					))
 				}
 			</ul>
 		</>
