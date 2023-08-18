@@ -8,7 +8,7 @@ export function List({ data }) {
 			</p>
 			<ul>
 				{data.map((item) => (
-					<ListItem name={item.name} />
+					<ListItem key={item.id} name={item.name} />
 				))}
 			</ul>
 		</>
