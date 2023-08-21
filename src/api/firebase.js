@@ -1,4 +1,4 @@
-import { collection, onSnapshot } from 'firebase/firestore';
+import { addDoc, collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -50,19 +50,24 @@ export function useShoppingListData(listId) {
  * @param {string} itemData.itemName The name of the item.
  * @param {number} itemData.daysUntilNextPurchase The number of days until the user thinks they'll need to buy the item again.
  */
+
 export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
-	const listCollectionRef = collection(db, listId);
-	// TODO: Replace this call to console.log with the appropriate
-	// Firebase function, so this information is sent to your database!
-	return console.log(listCollectionRef, {
-		dateCreated: new Date(),
-		// NOTE: This is null because the item has just been created.
-		// We'll use updateItem to put a Date here when the item is purchased!
-		dateLastPurchased: null,
-		dateNextPurchased: getFutureDate(daysUntilNextPurchase),
-		name: itemName,
-		totalPurchases: 0,
-	});
+	try {
+		const listCollectionRef = collection(db, listId);
+
+		const newItemDocRef = await addDoc(listCollectionRef, {
+			dateCreated: new Date(),
+			dateLastPurchased: null,
+			dateNextPurchased: getFutureDate(daysUntilNextPurchase),
+			name: itemName,
+			totalPurchases: 0,
+		});
+
+		return newItemDocRef;
+	} catch (error) {
+		console.error('Error adding item:', error);
+		throw error; // Re-throw the error to propagate it to the caller if needed
+	}
 }
 
 export async function updateItem() {

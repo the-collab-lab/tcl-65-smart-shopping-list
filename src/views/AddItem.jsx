@@ -6,15 +6,14 @@ export function AddItem() {
 	const [anticipation, setAnticipation] = useState('7');
 	const [message, setMessage] = useState('');
 
-	useEffect(() => {
-		console.log(anticipation);
-	}, [anticipation]);
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
-		// Here you can implement the logic to save the item to the database
-		// You can use 'itemName' and 'anticipation' in this logic
+		const daysUntilNextPurchase = parseInt(anticipation);
+		const addItemReturn = addItem(`my test list`, {
+			itemName,
+			daysUntilNextPurchase,
+		});
+		console.log(addItemReturn);
 
 		setMessage(`Item '${itemName}' was saved to the database.`);
 	};
