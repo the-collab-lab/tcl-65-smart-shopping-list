@@ -20,7 +20,7 @@ export function App() {
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
 		'tcl-shopping-list-token',
-		'my test list',
+		null,
 	);
 
 	/**
@@ -34,7 +34,10 @@ export function App() {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path="/list" element={<List data={data} />} />
+					<Route
+						path="/list"
+						element={<List data={data} listToken={listToken} />}
+					/>
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
 			</Routes>

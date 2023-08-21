@@ -1,6 +1,12 @@
 import { ListItem } from '../components';
+import { redirect } from 'react-router-dom';
 
-export function List({ data }) {
+export function List({ data, listToken }) {
+	console.log(listToken);
+	if (listToken) {
+		return redirect('/');
+	}
+
 	return (
 		<>
 			<p>
