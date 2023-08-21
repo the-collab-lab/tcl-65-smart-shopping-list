@@ -9,20 +9,16 @@ export function AddItem() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const daysUntilNextPurchase = parseInt(anticipation);
-		const addItemReturn = addItem(`my test list`, {
+		addItem(`my test list`, {
 			itemName,
 			daysUntilNextPurchase,
 		});
-		console.log(addItemReturn);
 
 		setMessage(`Item '${itemName}' was saved to the database.`);
 	};
 
 	return (
 		<div>
-			<p>
-				Hello from the <code>/add-item</code> page!
-			</p>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="item-name">Item Name:</label>
 				<input
@@ -33,7 +29,7 @@ export function AddItem() {
 					required
 				/>
 
-				<label htmlFor="anticipation">Anticipation:</label>
+				<label htmlFor="anticipation">How soon will you buy this again?</label>
 				<select
 					id="anticipation"
 					value={anticipation}
