@@ -4,6 +4,7 @@ import { generateToken } from '@the-collab-lab/shopping-list-utils';
 export function Home({ setListToken }) {
 	const generateListToken = () => {
 		setListToken(generateToken());
+		// redirect user to /list
 	};
 
 	return (
