@@ -19,7 +19,8 @@ export function App() {
 	 * to create and join a new list.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
-		'tcl-shopping-list-token',
+		// 'tcl-shopping-list-token',
+		'',
 		null,
 	);
 
@@ -33,7 +34,7 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
+					<Route index element={<Home setListToken={setListToken} />} />
 					<Route
 						path="/list"
 						element={<List data={data} listToken={listToken} />}

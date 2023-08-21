@@ -1,10 +1,11 @@
 import { ListItem } from '../components';
-import { redirect } from 'react-router-dom';
 
 export function List({ data, listToken }) {
-	console.log(listToken);
-	if (listToken) {
-		return redirect('/');
+	// console.log(listToken);
+	if (!listToken) {
+		console.log('!listToken');
+		// redirect to Home
+		// window.location.href = "/"
 	}
 
 	return (
