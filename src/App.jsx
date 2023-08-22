@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Navigate,
+} from 'react-router-dom';
 
 import { AddItem, Home, Layout, List } from './views';
 
@@ -18,9 +23,9 @@ export function App() {
 	 * have tokens), and use `setListToken` when we allow a user
 	 * to create and join a new list.
 	 */
+	// const createList = () => {
 	const [listToken, setListToken] = useStateWithStorage(
-		// 'tcl-shopping-list-token',
-		'',
+		'tcl-shopping-list-token',
 		null,
 	);
 
@@ -34,10 +39,25 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home setListToken={setListToken} />} />
+					<Route
+						index
+						element={
+							listToken ? (
+								<Home setListToken={setListToken} />
+							) : (
+								<Navigate replace to="/list" />
+							)
+						}
+					/>
 					<Route
 						path="/list"
-						element={<List data={data} listToken={listToken} />}
+						element={
+							listToken ? (
+								<List data={data} listToken={listToken} />
+							) : (
+								<Navigate replace to="/" />
+							)
+						}
 					/>
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
