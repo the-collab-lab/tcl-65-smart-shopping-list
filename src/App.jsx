@@ -11,7 +11,13 @@ import { useShoppingListData } from './api';
 
 import { useStateWithStorage } from './utils';
 
+import { generateToken } from '@the-collab-lab/shopping-list-utils';
+
 export function App() {
+	const handleNewToken = () => {
+		if (listToken) return;
+		setListToken(generateToken());
+	};
 	/**
 	 * This custom hook takes a token pointing to a shopping list
 	 * in our database and syncs it with localStorage for later use.
@@ -43,9 +49,11 @@ export function App() {
 						index
 						element={
 							listToken ? (
-								<Home setListToken={setListToken} />
+								//<Home setListToken={setListToken} />
+								<Navigate to="/list" />
 							) : (
-								<Navigate replace to="/list" />
+								//<Navigate replace to="/list" />
+								<Home handleNewToken={handleNewToken} />
 							)
 						}
 					/>
