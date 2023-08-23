@@ -14,6 +14,9 @@ import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
+	// creates a list token if there is no list token after the create list button is pushed.
+	// if there is a token, returns. otherwise, setListToken calls the generateToken function
+	// setting the result in state as listToken, writing it to local storage.
 	const handleNewToken = () => {
 		if (listToken) return;
 		setListToken(generateToken());
@@ -29,7 +32,6 @@ export function App() {
 	 * have tokens), and use `setListToken` when we allow a user
 	 * to create and join a new list.
 	 */
-	// const createList = () => {
 	const [listToken, setListToken] = useStateWithStorage(
 		'tcl-shopping-list-token',
 		null,
@@ -49,10 +51,8 @@ export function App() {
 						index
 						element={
 							listToken ? (
-								//<Home setListToken={setListToken} />
 								<Navigate to="/list" />
 							) : (
-								//<Navigate replace to="/list" />
 								<Home handleNewToken={handleNewToken} />
 							)
 						}
