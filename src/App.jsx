@@ -14,13 +14,6 @@ import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
-	// creates a list token if there is no list token after the create list button is pushed.
-	// if there is a token, returns. otherwise, setListToken calls the generateToken function
-	// setting the result in state as listToken, writing it to local storage.
-	const handleNewToken = () => {
-		if (listToken) return;
-		setListToken(generateToken());
-	};
 	/**
 	 * This custom hook takes a token pointing to a shopping list
 	 * in our database and syncs it with localStorage for later use.
@@ -36,6 +29,14 @@ export function App() {
 		'tcl-shopping-list-token',
 		null,
 	);
+
+	// creates a list token if there is no list token after the create list button is pushed.
+	// if there is a token, returns. otherwise, setListToken calls the generateToken function
+	// setting the result in state as listToken, writing it to local storage.
+	const handleNewToken = () => {
+		if (listToken) return;
+		setListToken(generateToken());
+	};
 
 	/**
 	 * This custom hook takes our token and fetches the data for our list.
