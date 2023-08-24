@@ -26,11 +26,10 @@ export function App() {
 		null,
 	);
 
-	// creates a list token if there is no list token after the create list button is pushed.
-	// if there is a token, returns. otherwise, setListToken calls the generateToken function
-	// setting the result in state as listToken, writing it to local storage.
 	const handleNewToken = () => {
+		//if token is true do nothing
 		if (listToken) return;
+		//if token is false setlistToken calls the generateToken function and sets the result to state var of listToken
 		setListToken(generateToken());
 	};
 
