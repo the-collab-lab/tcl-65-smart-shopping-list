@@ -6,15 +6,22 @@ export function AddItem() {
 	const [anticipation, setAnticipation] = useState('7');
 	const [message, setMessage] = useState('');
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const daysUntilNextPurchase = parseInt(anticipation);
-		addItem(`my test list`, {
-			itemName,
-			daysUntilNextPurchase,
-		});
 
-		setMessage(`Item '${itemName}' was saved to the database.`);
+		try {
+			await addItem(`my test list`, {
+				itemName,
+				daysUntilNextPurchase,
+			});
+
+			setMessage(`Item '${itemName}' was saved to the database.`);
+			setItemName('');
+			setAnticipation('7');
+		} catch (error) {
+			setMessage(`Error adding item`);
+		}
 	};
 
 	return (
