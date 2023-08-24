@@ -19,11 +19,7 @@ export function App() {
 	 * in our database and syncs it with localStorage for later use.
 	 * Check ./utils/hooks.js for its implementation.
 	 *
-	 * We use `my test list` by default so we can see the list
-	 * of items that was prepopulated for this project.
-	 * We'll later set this to `null` by default (since new users do not
-	 * have tokens), and use `setListToken` when we allow a user
-	 * to create and join a new list.
+	 * Use `setListToken` to allow a user to create and join a new list.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
 		'tcl-shopping-list-token',
