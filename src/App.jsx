@@ -49,7 +49,7 @@ export function App() {
 							listToken ? (
 								<Navigate to="/list" />
 							) : (
-								<Home handleNewToken={handleNewToken} />
+								<Home listToken={listToken} handleNewToken={handleNewToken} />
 							)
 						}
 					/>
