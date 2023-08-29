@@ -1,14 +1,21 @@
 import './Home.css';
 import { Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
+import { checkCount } from '../api/firebase';
 
 export function Home({ setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
+	const [message, setMessage] = useState('');
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		setListToken(inputToken);
-		return <Navigate to="/list" />;
+		const count = await checkCount(inputToken);
+		if (count === 0) {
+			setMessage('List not found');
+		} else {
+			setListToken(inputToken);
+			return <Navigate to="/list" />;
+		}
 	};
 
 	return (
@@ -31,6 +38,7 @@ export function Home({ setListToken, handleNewToken }) {
 
 				<button type="submit">Submit</button>
 			</form>
+			{message && <p>{message}</p>}
 		</div>
 	);
 }
