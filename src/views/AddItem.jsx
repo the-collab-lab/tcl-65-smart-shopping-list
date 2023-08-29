@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem() {
+export function AddItem({ listToken }) {
 	const [itemName, setItemName] = useState('');
 	const [anticipation, setAnticipation] = useState('7');
 	const [message, setMessage] = useState('');
@@ -11,7 +11,7 @@ export function AddItem() {
 		const daysUntilNextPurchase = parseInt(anticipation);
 
 		try {
-			await addItem(`my test list`, {
+			await addItem(listToken, {
 				itemName,
 				daysUntilNextPurchase,
 			});

@@ -1,8 +1,15 @@
 import './Home.css';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useState } from 'react';
 
-export function Home({ listToken, handleNewToken }) {
-	const handleSubmit = () => {};
+export function Home({ setListToken, handleNewToken }) {
+	const [inputToken, setInputToken] = useState('');
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		setListToken(inputToken);
+		return <Navigate to="/list" />;
+	};
 
 	return (
 		<div className="Home">
@@ -17,8 +24,9 @@ export function Home({ listToken, handleNewToken }) {
 				<input
 					type="text"
 					id="list-token"
-					value={listToken}
-					onChange={() => {}}
+					value={inputToken}
+					onChange={(event) => setInputToken(event.target.value)}
+					required
 				/>
 
 				<button type="submit">Submit</button>

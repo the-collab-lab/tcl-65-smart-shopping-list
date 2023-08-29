@@ -1,4 +1,9 @@
-import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import {
+	addDoc,
+	collection,
+	onSnapshot,
+	getCountFromServer,
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
 import { getFutureDate } from '../utils';
@@ -41,6 +46,17 @@ export function useShoppingListData(listId) {
 
 	// Return the data so it can be used by our React components.
 	return data;
+}
+
+export async function checkCount(listId) {
+	try {
+		const listCollectionRef = collection(db, listId);
+		const snapshot = await getCountFromServer(listCollectionRef);
+		return snapshot.data().count;
+	} catch (error) {
+		console.error('Error', error);
+		throw error; // Re-throw the error to propagate it to the caller if needed
+	}
 }
 
 /**
