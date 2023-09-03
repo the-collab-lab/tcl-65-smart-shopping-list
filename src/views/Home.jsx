@@ -5,13 +5,13 @@ import { checkCount } from '../api/firebase';
 
 export function Home({ setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
-	const [message, setMessage] = useState('');
+	const [tokenNotFoundMessage, settokenNotFoundMessage] = useState('');
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const count = await checkCount(inputToken);
 		if (count === 0) {
-			setMessage('List not found');
+			settokenNotFoundMessage('List not found');
 		} else {
 			setListToken(inputToken);
 			return <Navigate to="/list" />;
@@ -38,7 +38,7 @@ export function Home({ setListToken, handleNewToken }) {
 
 				<button type="submit">Submit</button>
 			</form>
-			{message && <p>{message}</p>}
+			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
 		</div>
 	);
 }
