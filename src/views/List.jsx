@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
+import { Navigate } from 'react-router-dom';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -25,7 +26,11 @@ export function List({ data, listToken }) {
 		setFilteredData(data);
 	};
 
-	return (
+	const handleAddItem = () => {
+		return <Navigate to="/list" />;
+	};
+
+	return data ? (
 		<>
 			<form className="filter-form">
 				<label htmlFor="search-term">Filter items:</label>
@@ -48,6 +53,11 @@ export function List({ data, listToken }) {
 					<ListItem key={item.id} name={item.name} />
 				))}
 			</ul>
+		</>
+	) : (
+		<>
+			<p>The shopping list is currently empty</p>
+			<button onClick={handleAddItem}>Add Item</button>
 		</>
 	);
 }
