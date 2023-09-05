@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState([]);
+	const navigate = useNavigate();
 
 	// Function to update the filteredData based on the searchTerm
 	const updateFilteredData = () => {
@@ -27,10 +28,10 @@ export function List({ data, listToken }) {
 	};
 
 	const handleAddItem = () => {
-		return <Navigate to="/list" />;
+		navigate('/add-item');
 	};
 
-	return data ? (
+	return data.length > 0 ? (
 		<>
 			<form className="filter-form">
 				<label htmlFor="search-term">Filter items:</label>
