@@ -50,9 +50,11 @@ export function List({ data, listToken }) {
 						key={item.id}
 						name={item.name}
 						itemId={item.id}
+						listId={listToken} //added listId
 						dateLastPurchased={item.dateLastPurchased}
 						totalPurchases={item.totalPurchases}
 						updateItem={updateItem}
+						data={data}
 					/>
 				))}
 			</ul>

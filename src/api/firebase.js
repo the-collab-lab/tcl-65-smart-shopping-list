@@ -98,17 +98,37 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 			totalPurchases: increment(1)
 	
 	});*/
+// export async function updateItem(
+// 	listId,
+// 	itemId,
+// 	dateLastPurchased,
+// 	totalPurchases,
+// ) {
+// 	const itemRef = doc(db, listId, itemId);
+// 	await updateDoc(itemRef, {
+// 		dateLastPurchased: new Date(),
+// 		totalPurchases: totalPurchases + 1,
+// 	});
+// } ORIGINAL CODE
+
 export async function updateItem(
 	listId,
 	itemId,
 	dateLastPurchased,
 	totalPurchases,
 ) {
-	const itemRef = doc(db, listId, itemId);
-	await updateDoc(itemRef, {
-		dateLastPurchased: new Date(),
-		totalPurchases: totalPurchases + 1,
-	});
+	try {
+		const itemRef = doc(db, listId, itemId);
+		await updateDoc(itemRef, {
+			dateLastPurchased: new Date(),
+			totalPurchases: totalPurchases + 1,
+		});
+		console.log('Item successfully updated!'); // Success message (optional)
+	} catch (error) {
+		// Handle the error here
+		console.error('Error updating item:', error);
+		throw error; // Re-throwing the error if you want to handle it later
+	}
 }
 
 export async function deleteItem() {

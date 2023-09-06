@@ -4,6 +4,7 @@ import './ListItem.css';
 export function ListItem({
 	name,
 	itemId,
+	listId, //added listId
 	dateLastPurchased,
 	totalPurchases,
 	updateItem,
@@ -23,7 +24,9 @@ export function ListItem({
 					type="checkbox"
 					//checked={oneDayInMillis(item.dateLastPurchased)}
 					checked={itemPurchased()}
-					onChange={() => updateItem(itemId, dateLastPurchased, totalPurchases)}
+					onChange={() =>
+						updateItem(listId, itemId, dateLastPurchased, totalPurchases)
+					} //added ListId
 				/>
 				{name}
 			</label>
