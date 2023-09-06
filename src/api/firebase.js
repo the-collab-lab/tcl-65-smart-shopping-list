@@ -5,6 +5,7 @@ import {
 	getCountFromServer,
 	doc,
 	updateDoc,
+	//increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
@@ -87,6 +88,16 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 		throw error; // Re-throw the error to propagate it to the caller if needed
 	}
 }
+/*export async function updateItem()
+
+	export async function updateItem(listId, itemId){
+		const docRef = doc(db, listId, itemId);
+
+		await updateDoc(docRef, {
+			dateLastPurchased: new Date(),
+			totalPurchases: increment(1)
+	
+	});*/
 export async function updateItem(
 	listId,
 	itemId,
