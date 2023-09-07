@@ -54,7 +54,6 @@ export function List({ data, listToken }) {
 						dateLastPurchased={item.dateLastPurchased}
 						totalPurchases={item.totalPurchases}
 						updateItem={updateItem}
-						data={data}
 					/>
 				))}
 			</ul>

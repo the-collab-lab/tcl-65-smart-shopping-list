@@ -1,33 +1,26 @@
 import './ListItem.css';
-//import { isWithinLastDay } from '../utils/dates';
-//import {updateItem} from '../api/firebase'
-
-/*export function ListItem({ item, listId, handleDeleteConfirmation, urgency }) {
-	const { itemId, name, dateLastPurchased, dateNextPurchased, totalPurchases } =
-		item;
-
-	const lastPurchasedDate = dateLastPurchased?.toDate().toDateString();
-	const nextPurchasedDate = dateNextPurchased?.toDate().toDateString();
-
-	const handlePurchase = async (e) => {
-		if (e.target.checked) {
-			await updateItem(listId, item);
-		}
-	};*/
 
 export function ListItem({
 	name,
 	itemId,
-	listId, //added listId
+	listId,
 	dateLastPurchased,
 	totalPurchases,
 	updateItem,
 }) {
+	// Function to check if the item was purchased within the last 24 hours
 	const itemPurchased = () => {
 		const oneDayInMillis = 24 * 60 * 60 * 1000;
+
+		// If dateLastPurchased exists, check if it was purchased within the last 24 hours
 		if (dateLastPurchased) {
-			return new Date() - new Date(dateLastPurchased) <= oneDayInMillis;
+			return (
+				new Date() - new Date(dateLastPurchased?.seconds * 1000) <=
+				oneDayInMillis
+			); // Converted dateLastPurchased to milliseconds for comparison
 		}
+
+		// Return false if dateLastPurchased does not exist
 		return false;
 	};
 
@@ -36,9 +29,8 @@ export function ListItem({
 			<label>
 				<input
 					type="checkbox"
-					//checked={oneDayInMillis(item.dateLastPurchased)}
 					checked={itemPurchased()}
-					onChange={() => updateItem(itemId, dateLastPurchased, totalPurchases)}
+					onChange={() => updateItem(listId, itemId, totalPurchases)}
 				/>
 				{name}
 			</label>
