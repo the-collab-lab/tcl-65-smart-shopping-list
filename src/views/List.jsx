@@ -47,11 +47,8 @@ export function List({ data, listToken }) {
 				{filteredData.map((item) => (
 					<ListItem
 						key={item.id}
-						name={item.name}
-						itemId={item.id}
+						item={item}
 						listId={listToken} //added listId
-						dateLastPurchased={item.dateLastPurchased}
-						totalPurchases={item.totalPurchases}
 					/>
 				))}
 			</ul>

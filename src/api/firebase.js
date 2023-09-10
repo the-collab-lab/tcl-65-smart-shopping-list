@@ -89,9 +89,9 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	}
 }
 
-export async function updateItem(listId, itemId, totalPurchases) {
+export async function updateItem(listId, id, totalPurchases) {
 	try {
-		const itemRef = doc(db, listId, itemId);
+		const itemRef = doc(db, listId, id);
 		await updateDoc(itemRef, {
 			dateLastPurchased: new Date(),
 			totalPurchases: totalPurchases + 1,
