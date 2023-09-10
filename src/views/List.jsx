@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
+import { useNavigate } from 'react-router-dom';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [filteredData, setFilteredData] = useState([]);
+	const navigate = useNavigate();
 
 	// Function to update the filteredData based on the searchTerm
 	const updateFilteredData = () => {
@@ -25,7 +27,11 @@ export function List({ data, listToken }) {
 		setFilteredData(data);
 	};
 
-	return (
+	const handleAddItem = () => {
+		navigate('/add-item');
+	};
+
+	return data.length > 0 ? (
 		<>
 			<form className="filter-form">
 				<label htmlFor="search-term">Filter items:</label>
@@ -52,6 +58,11 @@ export function List({ data, listToken }) {
 					/>
 				))}
 			</ul>
+		</>
+	) : (
+		<>
+			<p>The shopping list is currently empty</p>
+			<button onClick={handleAddItem}>Add Item</button>
 		</>
 	);
 }
