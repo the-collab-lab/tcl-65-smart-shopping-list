@@ -45,7 +45,11 @@ export function List({ data, listToken }) {
 
 			<ul>
 				{filteredData.map((item) => (
-					<ListItem key={item.id} name={item.name} />
+					<ListItem
+						key={item.id}
+						item={item}
+						listId={listToken} //added listId
+					/>
 				))}
 			</ul>
 		</>
