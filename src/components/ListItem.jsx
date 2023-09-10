@@ -1,4 +1,5 @@
 import './ListItem.css';
+import { updateItem } from '../api/firebase';
 
 export function ListItem({
 	name,
@@ -6,10 +7,9 @@ export function ListItem({
 	listId,
 	dateLastPurchased,
 	totalPurchases,
-	updateItem,
 }) {
 	// Function to check if the item was purchased within the last 24 hours
-	const itemPurchased = () => {
+	const isPurchased = () => {
 		const oneDayInMillis = 24 * 60 * 60 * 1000;
 
 		// If dateLastPurchased exists, check if it was purchased within the last 24 hours
@@ -29,7 +29,7 @@ export function ListItem({
 			<label>
 				<input
 					type="checkbox"
-					checked={itemPurchased()}
+					checked={isPurchased()}
 					onChange={() => updateItem(listId, itemId, totalPurchases)}
 				/>
 				{name}

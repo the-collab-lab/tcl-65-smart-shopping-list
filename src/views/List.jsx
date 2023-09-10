@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
-import { updateItem } from '../api/firebase';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -53,7 +52,6 @@ export function List({ data, listToken }) {
 						listId={listToken} //added listId
 						dateLastPurchased={item.dateLastPurchased}
 						totalPurchases={item.totalPurchases}
-						updateItem={updateItem}
 					/>
 				))}
 			</ul>

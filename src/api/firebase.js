@@ -99,7 +99,6 @@ export async function updateItem(listId, itemId, totalPurchases) {
 	} catch (error) {
 		// Handle the error here
 		console.error('Error updating item:', error);
-		throw error; // Re-throwing the error if you want to handle it later
 	}
 }
 
