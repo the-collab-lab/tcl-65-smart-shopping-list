@@ -4,26 +4,35 @@ import { addItem } from '../api/firebase';
 export function AddItem({ listToken, data }) {
 	const [itemName, setItemName] = useState('');
 	const [anticipation, setAnticipation] = useState('7');
-	const [message, setMessage] = useState('');
+	const [message, setMessage] = useState(null);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const daysUntilNextPurchase = parseInt(anticipation);
+
+		const itemNames = data.map((item) =>
+			item.name.toLowerCase().replace(/[^a-z0-9]/gi, ''),
+		);
+
 		if (itemName === '') {
 			setMessage('Please enter the name of your item.');
-		}
+		} else if (
+			itemNames.includes(itemName.toLowerCase().replace(/[^a-z0-9]/gi, ''))
+		) {
+			setMessage(`${itemName} is already on the list.`);
+		} else {
+			try {
+				await addItem(listToken, {
+					itemName,
+					daysUntilNextPurchase,
+				});
 
-		try {
-			await addItem(listToken, {
-				itemName,
-				daysUntilNextPurchase,
-			});
-
-			setMessage(`Item '${itemName}' was saved to the database.`);
-			setItemName('');
-			setAnticipation('7');
-		} catch (error) {
-			setMessage(`Error adding item`);
+				setMessage(`Item '${itemName}' was saved to the database.`);
+				setItemName('');
+				setAnticipation('7');
+			} catch (error) {
+				setMessage(`Error adding item`);
+			}
 		}
 	};
 
@@ -36,7 +45,6 @@ export function AddItem({ listToken, data }) {
 					id="item-name"
 					value={itemName}
 					onChange={(event) => setItemName(event.target.value)}
-					required
 				/>
 
 				<label htmlFor="anticipation">How soon will you buy this again?</label>
