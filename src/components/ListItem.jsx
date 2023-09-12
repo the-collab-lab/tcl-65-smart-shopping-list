@@ -25,7 +25,7 @@ export function ListItem({ item, listId }) {
 				<input
 					type="checkbox"
 					checked={isPurchased()}
-					onChange={() => updateItem(listId, id, totalPurchases)}
+					onChange={() => updateItem(listId, item)}
 				/>
 				{name}
 			</label>
