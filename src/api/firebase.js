@@ -92,7 +92,6 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 }
 
 export async function updateItem(listId, item) {
-	console.log('item:', item);
 	let daysSinceLastPurchase;
 	if (item.dateLastPurchased) {
 		daysSinceLastPurchase = getDaysBetweenDates(
@@ -120,7 +119,6 @@ export async function updateItem(listId, item) {
 			dateNextPurchased: new Date(nextPurchaseDateInMs),
 		});
 	} catch (error) {
-		// Handle the error here
 		console.error('Error updating item:', error);
 	}
 }
