@@ -93,12 +93,12 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 
 export async function updateItem(listId, item) {
 	let daysSinceLastPurchase;
-	if (item.dateLastPurchased) {
+	if (item.totalPurchases < 2) {
+		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
+	} else {
 		daysSinceLastPurchase = getDaysBetweenDates(
 			item.dateLastPurchased?.seconds,
 		);
-	} else {
-		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
 	}
 
 	const estimatedDaysUntilNextPurchase =
