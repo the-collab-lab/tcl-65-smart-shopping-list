@@ -97,7 +97,8 @@ export async function updateItem(listId, item) {
 		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
 	} else {
 		daysSinceLastPurchase = getDaysBetweenDates(
-			item.dateLastPurchased?.seconds,
+			new Date(item.dateLastPurchased?.seconds * 1000), // Convert from seconds to milliseconds and then to a Date
+			new Date(),
 		);
 	}
 

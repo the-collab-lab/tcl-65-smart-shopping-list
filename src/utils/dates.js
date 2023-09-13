@@ -11,8 +11,7 @@ export function getFutureDate(offset) {
 	return new Date(Date.now() + offset * ONE_DAY_IN_MILLISECONDS);
 }
 
-export const getDaysBetweenDates = (startDateInSeconds) => {
-	const startDateInMilliseconds = startDateInSeconds * 1000;
-	const timeDifference = new Date() - new Date(startDateInMilliseconds);
+export function getDaysBetweenDates(startDate, endDate) {
+	const timeDifference = endDate - startDate;
 	return Math.round(timeDifference / ONE_DAY_IN_MILLISECONDS);
-};
+}
