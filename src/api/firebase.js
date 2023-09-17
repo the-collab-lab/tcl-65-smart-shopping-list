@@ -92,6 +92,8 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 }
 
 export async function updateItem(listId, item) {
+	//the following clause insists that w/in the first 2 purchases, the calculateEstimate() returns what the user input in the add-item form. Remove this if we choose to use calculateEstimate() as is. Which returns daysSinceLastPurchase w/in the first 2 purchases-- which caused a 0 estimatedDaysUntilNextPurchase issue during testing.
+
 	let daysSinceLastPurchase;
 	if (item.totalPurchases < 2) {
 		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
