@@ -9,7 +9,8 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getDaysBetweenDates, getFutureDate } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * A custom hook that subscribes to a shopping list in our Firestore database
@@ -80,6 +81,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 			dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 			name: itemName,
 			totalPurchases: 0,
+			estimatedDaysUntilNextPurchase: daysUntilNextPurchase,
 		});
 
 		return newItemDocRef;
@@ -89,15 +91,37 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	}
 }
 
-export async function updateItem(listId, id, totalPurchases) {
+export async function updateItem(listId, item) {
+	//the following clause insists that w/in the first 2 purchases, the calculateEstimate() returns what the user input in the add-item form. Remove this if we choose to use calculateEstimate() as is. Which returns daysSinceLastPurchase w/in the first 2 purchases-- which caused a 0 estimatedDaysUntilNextPurchase issue during testing.
+
+	let daysSinceLastPurchase;
+	if (item.totalPurchases < 2) {
+		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
+	} else {
+		daysSinceLastPurchase = getDaysBetweenDates(
+			new Date(item.dateLastPurchased?.seconds * 1000), // Convert from seconds to milliseconds and then to a Date
+			new Date(),
+		);
+	}
+
+	const estimatedDaysUntilNextPurchase =
+		calculateEstimate(
+			item.estimatedDaysUntilNextPurchase,
+			daysSinceLastPurchase,
+			item.totalPurchases,
+		) *
+		(24 * 60 * 60 * 1000); // Convert to Milliseconds;
+
+	const currentDateInMs = new Date().getTime();
+	const nextPurchaseDateInMs = estimatedDaysUntilNextPurchase + currentDateInMs;
 	try {
-		const itemRef = doc(db, listId, id);
+		const itemRef = doc(db, listId, item.id);
 		await updateDoc(itemRef, {
 			dateLastPurchased: new Date(),
-			totalPurchases: totalPurchases + 1,
+			totalPurchases: item.totalPurchases + 1,
+			dateNextPurchased: new Date(nextPurchaseDateInMs),
 		});
 	} catch (error) {
-		// Handle the error here
 		console.error('Error updating item:', error);
 	}
 }
