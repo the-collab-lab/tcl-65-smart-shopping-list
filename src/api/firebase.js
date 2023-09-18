@@ -135,26 +135,11 @@ export async function deleteItem() {
 	 */
 }
 
-// export function comparePurchaseUrgency(data) {
-// 	const sortedData = data.sort((a, b) => {
-// 		comparePurchaseUrgency(a, b)
-// 	})
-// }
-
 export function comparePurchaseUrgency(a, b) {
 	// return positive number if a > b
 	const now = new Date();
-	// const aDays = getDaysBetweenDates(now, a.dateLastPurchased.toDate)
-	// const bDays = getDaysBetweenDates(now, b.dateLastPurchased)
 
-	// if (getDaysBetweenDates(now, a.dateLastPurchased.toDate())) {
-	// 	// make a inactive
-	// }
-	console.log(
-		'days',
-		getDaysBetweenDates(a.dateLastPurchased.toDate(), now),
-		getDaysBetweenDates(b.dateLastPurchased.toDate(), now),
-	);
+	// rule out inactive items
 	const isItemAInactive = a.dateLastPurchased
 		? getDaysBetweenDates(a.dateLastPurchased.toDate(), now) > 60
 		: false;
@@ -162,22 +147,29 @@ export function comparePurchaseUrgency(a, b) {
 		? getDaysBetweenDates(b.dateLastPurchased.toDate(), now) > 60
 		: false;
 
-	console.log(
-		'isItemAInactive',
-		isItemAInactive,
-		'isItemBInactive',
-		isItemBInactive,
-	);
 	if (isItemAInactive && !isItemBInactive) return 1;
 	if (!isItemAInactive && isItemBInactive) return -1;
-	console.log('neither');
 
-	// comparing inactive
-	// convert a and b to # days between dates
-	// alphabetize?
-	// alphabetize.
-	// !alphabetize?
-	// return a - b
+	// compare dateNextPurchased
+	const daysUntilNextPurchaseA = getDaysBetweenDates(
+		now,
+		a.dateNextPurchased.toDate(),
+	);
+	const daysUntilNextPurchaseB = getDaysBetweenDates(
+		now,
+		b.dateNextPurchased.toDate(),
+	);
+
+	const difference = daysUntilNextPurchaseA - daysUntilNextPurchaseB;
+
+	//compare alphabetically
+	if (difference === 0) {
+		if (a.name < b.name) {
+			return -1;
+		}
+		if (a.name > b.name) {
+			return 1;
+		}
+	}
+	return difference;
 }
-
-// data.sort(comparePurchaseUrgency)
