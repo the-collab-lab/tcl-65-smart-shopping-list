@@ -1,5 +1,6 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
+import { getDaysBetweenDates } from '../utils';
 
 export function ListItem({ item, listId }) {
 	const { name, id, dateLastPurchased, totalPurchases } = item;
@@ -19,6 +20,30 @@ export function ListItem({ item, listId }) {
 		return false;
 	};
 
+	function determineItemIndicator(item) {
+		const now = new Date();
+		if (
+			item.dateLastPurchased &&
+			getDaysBetweenDates(item.dateLastPurchased.toDate(), now) > 60
+		) {
+			return 'inactive';
+		}
+		const days = getDaysBetweenDates(now, item.dateNextPurchased.toDate());
+		if (days < 0) {
+			return 'overdue';
+		} else if (days <= 7) {
+			return 'soon';
+		} else if (days > 7 && days <= 30) {
+			return 'kind of soon';
+		} else {
+			return 'not soon';
+		}
+	}
+	const indicatorClass = `indicator-${determineItemIndicator(item).replaceAll(
+		' ',
+		'-',
+	)}`;
+
 	return (
 		<li className="ListItem">
 			<label>
@@ -29,6 +54,8 @@ export function ListItem({ item, listId }) {
 				/>
 				{name}
 			</label>
+			<br />
+			<p className={indicatorClass}>{determineItemIndicator(item)}</p>
 		</li>
 	);
 }
