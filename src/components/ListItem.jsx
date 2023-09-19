@@ -1,6 +1,7 @@
 import './ListItem.css';
 import { updateItem } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils';
+import { deleteItem, updateItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
 	const { name, id, dateLastPurchased, totalPurchases } = item;
@@ -43,6 +44,12 @@ export function ListItem({ item, listId }) {
 		' ',
 		'-',
 	)}`;
+	const handleDelete = (e) => {
+		e.preventDefault();
+		if (window.confirm(`Do you really want to delete ${name}?`)) {
+			deleteItem(listId, id);
+		}
+	};
 
 	return (
 		<li className="ListItem">
@@ -55,6 +62,7 @@ export function ListItem({ item, listId }) {
 				{name}
 				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
 			</label>
+			<button onClick={handleDelete}>Delete</button>
 		</li>
 	);
 }
