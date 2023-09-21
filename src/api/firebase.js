@@ -104,5 +104,9 @@ export async function updateItem(listId, id, totalPurchases) {
 }
 
 export async function deleteItem(listToken, itemId) {
-	await deleteDoc(doc(db, listToken, itemId));
+	try {
+		await deleteDoc(doc(db, listToken, itemId));
+	} catch (error) {
+		console.log('Error deleting item:', error);
+	}
 }
