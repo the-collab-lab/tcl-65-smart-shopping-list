@@ -129,7 +129,11 @@ export async function updateItem(listId, item) {
 }
 
 export async function deleteItem(listToken, itemId) {
-	await deleteDoc(doc(db, listToken, itemId));
+	try {
+		await deleteDoc(doc(db, listToken, itemId));
+	} catch (error) {
+		console.log('Error deleting item:', error);
+	}
 }
 
 export function comparePurchaseUrgency(a, b) {
