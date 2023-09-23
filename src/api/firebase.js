@@ -49,7 +49,8 @@ export function useShoppingListData(listId) {
 	}, [listId]);
 
 	// Return the data so it can be used by our React components.
-	return data;
+	// return data;
+	return data.sort(comparePurchaseUrgency);
 }
 
 export async function checkCount(listId) {
@@ -132,4 +133,43 @@ export async function deleteItem() {
 	 * to delete an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+}
+
+export function comparePurchaseUrgency(a, b) {
+	// return positive number if a > b
+	const now = new Date();
+
+	// rule out inactive items
+	const isItemAInactive = a.dateLastPurchased
+		? getDaysBetweenDates(a.dateLastPurchased.toDate(), now) > 60
+		: false;
+	const isItemBInactive = b.dateLastPurchased
+		? getDaysBetweenDates(b.dateLastPurchased.toDate(), now) > 60
+		: false;
+
+	if (isItemAInactive && !isItemBInactive) return 1;
+	if (!isItemAInactive && isItemBInactive) return -1;
+
+	// compare dateNextPurchased
+	const daysUntilNextPurchaseA = getDaysBetweenDates(
+		now,
+		a.dateNextPurchased.toDate(),
+	);
+	const daysUntilNextPurchaseB = getDaysBetweenDates(
+		now,
+		b.dateNextPurchased.toDate(),
+	);
+
+	const difference = daysUntilNextPurchaseA - daysUntilNextPurchaseB;
+
+	//compare alphabetically
+	if (difference === 0) {
+		if (a.name < b.name) {
+			return -1;
+		}
+		if (a.name > b.name) {
+			return 1;
+		}
+	}
+	return difference;
 }

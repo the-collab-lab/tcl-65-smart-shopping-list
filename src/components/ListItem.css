@@ -1,8 +1,34 @@
 .ListItem {
-	align-items: baseline;
-	display: flex;
-	flex-direction: row;
+	display: grid;
+	grid-template-columns: 1fr fit-content(20%);
+	align-items: center;
 	font-size: 1.2em;
+	list-style: none;
+
+	/* color variables */
+	--overdue: hsl(0, 74%, 65%);
+	--soon: hsl(39, 100%, 50%);
+	--kind-of-soon: hsl(60, 100%, 50%);
+	--not-soon: hsl(174, 72%, 56%);
+	--inactive: hsl(300, 24%, 80%);
+}
+
+label {
+	display: inherit;
+	align-items: inherit;
+	grid-template-columns: fit-content(20%) 1fr 1fr;
+	gap: 2%;
+}
+
+@media screen and (prefers-color-scheme: light) {
+	.ListItem {
+		/* color variables */
+		--overdue: rgb(232, 99, 99);
+		--soon: rgb(230, 115, 0);
+		--kind-of-soon: rgb(129, 170, 9);
+		--not-soon: rgb(5, 148, 161);
+		--inactive: rgb(97, 90, 115);
+	}
 }
 
 .ListItem-checkbox {
@@ -11,4 +37,24 @@
 
 .ListItem-label {
 	margin-left: 0.2em;
+}
+
+.indicator-soon {
+	color: var(--soon);
+}
+
+.indicator-kind-of-soon {
+	color: var(--kind-of-soon);
+}
+
+.indicator-not-soon {
+	color: var(--not-soon);
+}
+
+.indicator-inactive {
+	color: var(--inactive);
+}
+
+.indicator-overdue {
+	color: var(--overdue);
 }
