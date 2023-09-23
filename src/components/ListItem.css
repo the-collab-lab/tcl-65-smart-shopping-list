@@ -1,5 +1,7 @@
 .ListItem {
-	align-items: baseline;
+	display: grid;
+	grid-template-columns: 1fr fit-content(20%);
+	align-items: center;
 	font-size: 1.2em;
 	list-style: none;
 
@@ -12,10 +14,10 @@
 }
 
 label {
-	display: grid;
-	grid-template-columns: fit-content(20%) 2fr 1fr;
+	display: inherit;
+	align-items: inherit;
+	grid-template-columns: fit-content(20%) 1fr 1fr;
 	gap: 2%;
-	align-items: baseline;
 }
 
 @media screen and (prefers-color-scheme: light) {
