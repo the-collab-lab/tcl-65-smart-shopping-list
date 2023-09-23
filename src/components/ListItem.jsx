@@ -53,9 +53,8 @@ export function ListItem({ item, listId }) {
 					onChange={() => updateItem(listId, item)}
 				/>
 				{name}
+				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
 			</label>
-			<br />
-			<p className={indicatorClass}>{determineItemIndicator(item)}</p>
 		</li>
 	);
 }
