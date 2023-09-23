@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { addItem } from '../api/firebase';
+import { identifyErrorMessage } from '../utils';
 
 export function AddItem({ listToken, data }) {
 	const [itemName, setItemName] = useState('');
@@ -10,17 +11,11 @@ export function AddItem({ listToken, data }) {
 		event.preventDefault();
 		const daysUntilNextPurchase = parseInt(anticipation);
 
-		const itemNames = data.map((item) =>
-			item.name.toLowerCase().replace(/[^a-z0-9]/gi, ''),
-		);
+		const itemNames = data.map((item) => item.name);
+		const errorMessage = identifyErrorMessage(itemName, itemNames);
+		setMessage(errorMessage);
 
-		if (itemName === '') {
-			setMessage('Please enter the name of your item.');
-		} else if (
-			itemNames.includes(itemName.toLowerCase().replace(/[^a-z0-9]/gi, ''))
-		) {
-			setMessage(`${itemName} is already on the list.`);
-		} else {
+		if (!errorMessage) {
 			try {
 				await addItem(listToken, {
 					itemName,
@@ -61,7 +56,7 @@ export function AddItem({ listToken, data }) {
 				<button type="submit">Submit</button>
 			</form>
 
-			{message && <p>{message}</p>}
+			{message && <p data-testid="message">{message}</p>}
 		</div>
 	);
 }
