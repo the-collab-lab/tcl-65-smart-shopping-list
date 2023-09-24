@@ -1,5 +1,4 @@
 import './ListItem.css';
-import { updateItem } from '../api/firebase';
 import { getDaysBetweenDates } from '../utils';
 import { deleteItem, updateItem } from '../api/firebase';
 
