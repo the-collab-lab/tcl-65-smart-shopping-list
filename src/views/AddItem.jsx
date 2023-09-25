@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { addItem } from '../api/firebase';
-import { identifyErrorMessage } from '../utils';
+import React, { useState } from 'react';
 
-export function AddItem({ listToken, data }) {
+export function AddItem({ listToken, itemNames, addItem }) {
 	const [itemName, setItemName] = useState('');
 	const [anticipation, setAnticipation] = useState('7');
 	const [message, setMessage] = useState(null);
@@ -11,11 +9,25 @@ export function AddItem({ listToken, data }) {
 		event.preventDefault();
 		const daysUntilNextPurchase = parseInt(anticipation);
 
-		const itemNames = data.map((item) => item.name);
-		const errorMessage = identifyErrorMessage(itemName, itemNames);
-		setMessage(errorMessage);
-
-		if (!errorMessage) {
+		const normalize = (text) => {
+			return text.toLowerCase().replace(/[^a-z0-9]/g, ''); // regex: any character not a-z or 0-9, applied to the entire string
+		};
+		console.log(itemNames);
+		console.log(
+			'some outcome',
+			itemNames.some(
+				(nameInList) => normalize(nameInList) === normalize(itemName),
+			),
+		);
+		if (itemName === '') {
+			setMessage('Please enter the name of your item.');
+		} else if (
+			itemNames.some(
+				(nameInList) => normalize(nameInList) === normalize(itemName),
+			)
+		) {
+			setMessage(`Item '${itemName}' is already on the list.`);
+		} else {
 			try {
 				await addItem(listToken, {
 					itemName,
