@@ -9,7 +9,8 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getFutureDate } from '../utils';
+import { getDaysBetweenDates, getFutureDate } from '../utils';
+import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
  * A custom hook that subscribes to a shopping list in our Firestore database
@@ -48,7 +49,8 @@ export function useShoppingListData(listId) {
 	}, [listId]);
 
 	// Return the data so it can be used by our React components.
-	return data;
+	// return data;
+	return data.sort(comparePurchaseUrgency);
 }
 
 export async function checkCount(listId) {
@@ -80,6 +82,7 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 			dateNextPurchased: getFutureDate(daysUntilNextPurchase),
 			name: itemName,
 			totalPurchases: 0,
+			estimatedDaysUntilNextPurchase: daysUntilNextPurchase,
 		});
 
 		return newItemDocRef;
@@ -89,15 +92,37 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	}
 }
 
-export async function updateItem(listId, id, totalPurchases) {
+export async function updateItem(listId, item) {
+	//the following clause insists that w/in the first 2 purchases, the calculateEstimate() returns what the user input in the add-item form. Remove this if we choose to use calculateEstimate() as is. Which returns daysSinceLastPurchase w/in the first 2 purchases-- which caused a 0 estimatedDaysUntilNextPurchase issue during testing.
+
+	let daysSinceLastPurchase;
+	if (item.totalPurchases < 2) {
+		daysSinceLastPurchase = item.estimatedDaysUntilNextPurchase;
+	} else {
+		daysSinceLastPurchase = getDaysBetweenDates(
+			new Date(item.dateLastPurchased?.seconds * 1000), // Convert from seconds to milliseconds and then to a Date
+			new Date(),
+		);
+	}
+
+	const estimatedDaysUntilNextPurchase =
+		calculateEstimate(
+			item.estimatedDaysUntilNextPurchase,
+			daysSinceLastPurchase,
+			item.totalPurchases,
+		) *
+		(24 * 60 * 60 * 1000); // Convert to Milliseconds;
+
+	const currentDateInMs = new Date().getTime();
+	const nextPurchaseDateInMs = estimatedDaysUntilNextPurchase + currentDateInMs;
 	try {
-		const itemRef = doc(db, listId, id);
+		const itemRef = doc(db, listId, item.id);
 		await updateDoc(itemRef, {
 			dateLastPurchased: new Date(),
-			totalPurchases: totalPurchases + 1,
+			totalPurchases: item.totalPurchases + 1,
+			dateNextPurchased: new Date(nextPurchaseDateInMs),
 		});
 	} catch (error) {
-		// Handle the error here
 		console.error('Error updating item:', error);
 	}
 }
@@ -108,4 +133,43 @@ export async function deleteItem() {
 	 * to delete an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+}
+
+export function comparePurchaseUrgency(a, b) {
+	// return positive number if a > b
+	const now = new Date();
+
+	// rule out inactive items
+	const isItemAInactive = a.dateLastPurchased
+		? getDaysBetweenDates(a.dateLastPurchased.toDate(), now) > 60
+		: false;
+	const isItemBInactive = b.dateLastPurchased
+		? getDaysBetweenDates(b.dateLastPurchased.toDate(), now) > 60
+		: false;
+
+	if (isItemAInactive && !isItemBInactive) return 1;
+	if (!isItemAInactive && isItemBInactive) return -1;
+
+	// compare dateNextPurchased
+	const daysUntilNextPurchaseA = getDaysBetweenDates(
+		now,
+		a.dateNextPurchased.toDate(),
+	);
+	const daysUntilNextPurchaseB = getDaysBetweenDates(
+		now,
+		b.dateNextPurchased.toDate(),
+	);
+
+	const difference = daysUntilNextPurchaseA - daysUntilNextPurchaseB;
+
+	//compare alphabetically
+	if (difference === 0) {
+		if (a.name < b.name) {
+			return -1;
+		}
+		if (a.name > b.name) {
+			return 1;
+		}
+	}
+	return difference;
 }
