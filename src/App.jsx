@@ -7,7 +7,7 @@ import {
 
 import { AddItem, Home, Layout, List } from './views';
 
-import { useShoppingListData } from './api';
+import { useShoppingListData, addItem } from './api';
 
 import { useStateWithStorage } from './utils';
 
@@ -68,7 +68,13 @@ export function App() {
 					/>
 					<Route
 						path="/add-item"
-						element={<AddItem listToken={listToken} data={data} />}
+						element={
+							<AddItem
+								listToken={listToken}
+								itemNames={data.map((item) => item.name) || []}
+								addItem={addItem}
+							/>
+						}
 					/>
 				</Route>
 			</Routes>

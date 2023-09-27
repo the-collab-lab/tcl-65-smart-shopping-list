@@ -3,7 +3,8 @@
 		"plugin:jsx-a11y/recommended",
 		"prettier",
 		"react-app",
-		"react-app/jest"
+		"react-app/jest",
+		"plugin:playwright/recommended"
 	],
 	"rules": {
 		"react/jsx-filename-extension": "error"
