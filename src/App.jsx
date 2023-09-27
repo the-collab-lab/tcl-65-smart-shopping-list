@@ -46,14 +46,14 @@ export function App() {
 					<Route
 						index
 						element={
-							listToken ? (
-								<Navigate to="/list" />
-							) : (
-								<Home
-									setListToken={setListToken}
-									handleNewToken={handleNewToken}
-								/>
-							)
+							// listToken ? (
+							// 	<Navigate to="/list" />
+							// ) : (
+							<Home
+								setListToken={setListToken}
+								handleNewToken={handleNewToken}
+							/>
+							// )
 						}
 					/>
 					<Route
@@ -68,7 +68,13 @@ export function App() {
 					/>
 					<Route
 						path="/add-item"
-						element={<AddItem listToken={listToken} data={data} />}
+						element={
+							listToken ? (
+								<AddItem listToken={listToken} data={data} />
+							) : (
+								<Navigate replace to="/" />
+							)
+						}
 					/>
 				</Route>
 			</Routes>
