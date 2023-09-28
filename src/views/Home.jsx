@@ -38,7 +38,9 @@ export function Home({ setListToken, handleNewToken }) {
 
 				<button type="submit">Submit</button>
 			</form>
-			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
+			{tokenNotFoundMessage && (
+				<p className="error-message">{tokenNotFoundMessage}</p>
+			)}
 		</div>
 	);
 }

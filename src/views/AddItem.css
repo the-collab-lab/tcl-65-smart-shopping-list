@@ -8,3 +8,11 @@
 	display: flex;
 	justify-content: center;
 }
+
+.success-message {
+	font-size: 1.8rem;
+	margin-top: 0.5rem;
+	border: 0.2rem solid white;
+	display: flex;
+	justify-content: center;
+}
