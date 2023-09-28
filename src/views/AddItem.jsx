@@ -22,6 +22,7 @@ export function AddItem({ listToken, data }) {
 			itemNames.includes(itemName.toLowerCase().replace(/[^a-z0-9]/gi, ''))
 		) {
 			setMessage(`${itemName} is already on the list.`);
+			setMessageType('error');
 		} else {
 			try {
 				await addItem(listToken, {
