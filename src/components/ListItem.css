@@ -24,6 +24,8 @@ label {
 	font-size: 1.8rem;
 	margin-top: 0.5rem;
 	border: 0.2rem solid var(--overdue);
+	display: flex;
+	justify-content: center;
 }
 
 @media screen and (prefers-color-scheme: light) {

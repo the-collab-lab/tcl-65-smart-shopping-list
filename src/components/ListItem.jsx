@@ -54,10 +54,14 @@ export function ListItem({ item, listId }) {
 		}
 	};
 
-	const handleDelete = (e) => {
+	const handleDelete = async (e) => {
 		e.preventDefault();
 		if (window.confirm(`Do you really want to delete ${name}?`)) {
-			deleteItem(listId, id);
+			const error = await deleteItem(listId, id);
+			if (error) {
+				setError('Error deleting the item. Please try again.');
+				setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
+			}
 		}
 	};
 

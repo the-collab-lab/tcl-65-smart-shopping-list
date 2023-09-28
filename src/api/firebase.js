@@ -134,6 +134,7 @@ export async function deleteItem(listToken, itemId) {
 		await deleteDoc(doc(db, listToken, itemId));
 	} catch (error) {
 		console.log('Error deleting item:', error);
+		return error;
 	}
 }
 
