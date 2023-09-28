@@ -125,6 +125,7 @@ export async function updateItem(listId, item) {
 		});
 	} catch (error) {
 		console.error('Error updating item:', error);
+		return error;
 	}
 }
 

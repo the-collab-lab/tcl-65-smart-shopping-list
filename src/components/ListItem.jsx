@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import './ListItem.css';
 import { getDaysBetweenDates } from '../utils';
 import { deleteItem, updateItem } from '../api/firebase';
 
 export function ListItem({ item, listId }) {
+	const [error, setError] = useState('');
 	const { name, id, dateLastPurchased, totalPurchases } = item;
 	// Function to check if the item was purchased within the last 24 hours
 	const isPurchased = () => {
@@ -43,6 +45,15 @@ export function ListItem({ item, listId }) {
 		' ',
 		'-',
 	)}`;
+
+	const handleUpdate = async () => {
+		const error = await updateItem(listId, item);
+		if (error) {
+			setError('Error updating the item. Please try again.');
+			setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
+		}
+	};
+
 	const handleDelete = (e) => {
 		e.preventDefault();
 		if (window.confirm(`Do you really want to delete ${name}?`)) {
@@ -56,12 +67,14 @@ export function ListItem({ item, listId }) {
 				<input
 					type="checkbox"
 					checked={isPurchased()}
-					onChange={() => updateItem(listId, item)}
+					onChange={handleUpdate}
 				/>
 				{name}
 				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
 			</label>
 			<button onClick={handleDelete}>Delete</button>
+			{error && <p className="error-message">{error}</p>}{' '}
+			{/* Display error message */}
 		</li>
 	);
 }

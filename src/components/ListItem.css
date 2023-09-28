@@ -19,6 +19,12 @@ label {
 	grid-template-columns: fit-content(20%) 1fr 1fr;
 	gap: 2%;
 }
+.error-message {
+	color: var(--overdue);
+	font-size: 1.8rem;
+	margin-top: 0.5rem;
+	border: 0.2rem solid var(--overdue);
+}
 
 @media screen and (prefers-color-scheme: light) {
 	.ListItem {
