@@ -10,7 +10,11 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getDaysBetweenDates, getFutureDate } from '../utils';
+import {
+	ONE_DAY_IN_MILLISECONDS,
+	getDaysBetweenDates,
+	getFutureDate,
+} from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
@@ -111,8 +115,7 @@ export async function updateItem(listId, item) {
 			item.estimatedDaysUntilNextPurchase,
 			daysSinceLastPurchase,
 			item.totalPurchases,
-		) *
-		(24 * 60 * 60 * 1000); // Convert to Milliseconds;
+		) * ONE_DAY_IN_MILLISECONDS; // Convert to Milliseconds;
 
 	const currentDateInMs = new Date().getTime();
 	const nextPurchaseDateInMs = estimatedDaysUntilNextPurchase + currentDateInMs;
