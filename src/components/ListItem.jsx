@@ -51,7 +51,7 @@ export function ListItem({ item, listId }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className={`ListItem ${indicatorClass}`}>
 			<label>
 				<input
 					type="checkbox"
@@ -59,7 +59,7 @@ export function ListItem({ item, listId }) {
 					onChange={() => updateItem(listId, item)}
 				/>
 				{name}
-				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
+				<span>{determineItemIndicator(item)}</span>
 			</label>
 			<button onClick={handleDelete}>Delete</button>
 		</li>

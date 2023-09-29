@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import './AddItem.css';
+import React, { useState } from 'react';
 import { addItem } from '../api/firebase';
 
 export function AddItem({ listToken, data }) {
@@ -41,8 +42,9 @@ export function AddItem({ listToken, data }) {
 
 	return (
 		<div>
+			<h2>What do you want to buy?</h2>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="item-name">Item Name:</label>
+				<label htmlFor="item-name">Item Name: </label>
 				<input
 					type="text"
 					id="item-name"
