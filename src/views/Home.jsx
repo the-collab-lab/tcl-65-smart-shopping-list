@@ -1,20 +1,22 @@
 import './Home.css';
-import { Link, Navigate } from 'react-router-dom';
+// imported useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
 
 export function Home({ setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
-	const [tokenNotFoundMessage, settokenNotFoundMessage] = useState('');
+	const [tokenNotFoundMessage, setTokenNotFoundMessage] = useState('');
+	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const count = await checkCount(inputToken);
 		if (count === 0) {
-			settokenNotFoundMessage('List not found');
+			setTokenNotFoundMessage('List not found');
 		} else {
 			setListToken(inputToken);
-			return <Navigate to="/list" />;
+			navigate('/list'); // Use the `navigate` function to navigate to '/list'
 		}
 	};
 
@@ -27,7 +29,7 @@ export function Home({ setListToken, handleNewToken }) {
 				<button onClick={handleNewToken}>Create a New List</button>
 			</Link>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="list-token">List Token</label>
+				<label htmlFor="list-token">Enter Token</label>
 				<input
 					type="text"
 					id="list-token"
@@ -35,8 +37,7 @@ export function Home({ setListToken, handleNewToken }) {
 					onChange={(event) => setInputToken(event.target.value)}
 					required
 				/>
-
-				<button type="submit">Submit</button>
+				<button type="submit">Join List</button>
 			</form>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
 		</div>
