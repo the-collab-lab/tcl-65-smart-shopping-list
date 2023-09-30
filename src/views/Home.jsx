@@ -33,6 +33,7 @@ export function Home({ setListToken, handleNewToken }) {
 				<input
 					type="text"
 					id="list-token"
+					placeholder="Start typing here"
 					value={inputToken}
 					onChange={(event) => setInputToken(event.target.value)}
 					required
