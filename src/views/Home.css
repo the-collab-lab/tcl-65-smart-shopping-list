@@ -1,0 +1,17 @@
+.set-token-area {
+	border: 2px solid var(--color-text);
+	width: fit-content;
+	padding: 1.5rem 1rem 1.5rem 1rem;
+	margin: 1.5rem 0;
+	border-radius: 2px;
+}
+
+input[type='text'],
+select {
+	vertical-align: top;
+}
+
+.Home label,
+.Home p {
+	margin-bottom: 1rem;
+}

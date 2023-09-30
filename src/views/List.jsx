@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
+import './List.css';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -35,14 +36,16 @@ export function List({ data, listToken }) {
 		<>
 			<p>{listToken}</p>
 			<form className="filter-form">
-				<label htmlFor="search-term">Filter items:</label>
-				<input
-					type="text"
-					id="search-term"
-					value={searchTerm}
-					placeholder="Start typing here.."
-					onChange={(event) => setSearchTerm(event.target.value)}
-				></input>
+				<label htmlFor="search-term">
+					Filter items:{'  '}
+					<input
+						type="text"
+						id="search-term"
+						value={searchTerm}
+						placeholder="Start typing here.."
+						onChange={(event) => setSearchTerm(event.target.value)}
+					></input>
+				</label>
 				{searchTerm.length > 0 && (
 					<button type="reset" className="clear" onClick={handleClear}>
 						X

@@ -21,11 +21,34 @@
 	background-color: var(--color-bg);
 	padding-bottom: 0.5rem;
 	padding-top: max(env(safe-area-inset-top), 1rem);
-	text-align: center;
+	display: grid;
+	grid-template-areas:
+		'fresh smart'
+		'fresh list';
+	justify-content: space-evenly;
+}
+
+@media screen and (max-width: 500px) {
+	.Layout-header {
+		grid-template-areas:
+			'fresh fresh'
+			'smart list';
+	}
 }
 
 .Layout-header > h1 {
 	margin: 0;
+	grid-area: fresh;
+}
+
+.Layout-header > h2 {
+	margin: 0;
+	font-size: 1em;
+	grid-area: smart;
+}
+
+.list-token {
+	grid-area: list;
 }
 
 .Layout-main {
@@ -70,13 +93,4 @@
 .Nav-link.active {
 	text-decoration-thickness: 0.22em;
 	text-underline-offset: 0.1em;
-}
-
-p {
-	margin: 0;
-}
-
-input,
-select {
-	padding: 0.5rem;
 }

@@ -24,9 +24,11 @@ export function Home({ setListToken, handleNewToken }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<Link to="/list">
-				<button onClick={handleNewToken}>Create a New List</button>
+				<button className="button-primary" onClick={handleNewToken}>
+					Create a New List
+				</button>
 			</Link>
-			<form onSubmit={handleSubmit}>
+			<form className="set-token-area" onSubmit={handleSubmit}>
 				<label htmlFor="list-token">List Token</label>
 				<input
 					type="text"

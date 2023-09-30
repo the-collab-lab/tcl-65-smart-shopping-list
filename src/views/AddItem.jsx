@@ -62,8 +62,11 @@ export function AddItem({ listToken, data }) {
 					<option value="14">Kind of Soon (14 days)</option>
 					<option value="30">Not Soon (30 days)</option>
 				</select>
+				<br />
 
-				<button type="submit">Submit</button>
+				<button type="submit" className="button-primary">
+					Submit
+				</button>
 			</form>
 
 			{message && <p>{message}</p>}

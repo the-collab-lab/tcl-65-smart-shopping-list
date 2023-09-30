@@ -10,12 +10,14 @@ import './Layout.css';
  * defined in `App.jsx`.
  */
 
-export function Layout() {
+export function Layout({ listToken }) {
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
-					<h1>Smart shopping list</h1>
+					<h1>Fresh Out Of...</h1>
+					<h2>Smart shopping list</h2>
+					<p className="list-token">{listToken}</p>
 				</header>
 				<main className="Layout-main">
 					<Outlet />

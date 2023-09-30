@@ -1,11 +1,11 @@
 .ListItem {
 	display: grid;
 	grid-template-columns: 1fr fit-content(20%);
-	grid-auto-rows: 50px;
 	align-items: center;
-	font-size: 1.2em;
+	font-size: 1em;
 	list-style: none;
-	gap: 2%;
+	padding: 3px;
+	border-radius: 2px;
 
 	/* color variables */
 	--overdue: hsl(0, 74%, 65%);
@@ -13,8 +13,6 @@
 	--kind-of-soon: hsl(60, 100%, 50%);
 	--not-soon: hsl(174, 72%, 56%);
 	--inactive: hsl(300, 24%, 80%);
-
-	--contrast-hsl-vals: 18, 95%, 45%;
 
 	/* opacity variables */
 	--overdue-bg: hsla(var(--contrast-hsl-vals), 0.95);
@@ -39,8 +37,6 @@ label {
 		--kind-of-soon: rgb(129, 170, 9);
 		--not-soon: rgb(5, 148, 161);
 		--inactive: rgb(97, 90, 115);
-
-		--contrast-hsl-vals: 60, 100%, 50%;
 	}
 }
 
@@ -78,11 +74,13 @@ label {
 }
 
 input[type='checkbox'] {
-	width: 26.5px;
-	height: 26.5px;
+	width: 28px;
+	height: 28px;
 	accent-color: black;
+	padding: 0;
 }
 
 .ListItem button {
-	font-size: inherit;
+	background-color: var(--color-contrast);
+	vertical-align: baseline;
 }
