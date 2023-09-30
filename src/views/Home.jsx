@@ -14,6 +14,7 @@ export function Home({ setListToken, handleNewToken }) {
 		const count = await checkCount(inputToken);
 		if (count === 0) {
 			setTokenNotFoundMessage('List not found');
+			setInputToken(''); // Clear the input field
 		} else {
 			setListToken(inputToken);
 			navigate('/list'); // Use the `navigate` function to navigate to '/list'
@@ -33,7 +34,7 @@ export function Home({ setListToken, handleNewToken }) {
 				<input
 					type="text"
 					id="list-token"
-					placeholder="Start typing here"
+					placeholder="Start typing here.."
 					value={inputToken}
 					onChange={(event) => setInputToken(event.target.value)}
 					required

@@ -30,6 +30,7 @@ export function List({ data, listToken }) {
 	const handleAddItem = () => {
 		navigate('/add-item');
 	};
+
 	const handleCopyToken = () => {
 		// Create a temporary input element to copy the token
 		const tempInput = document.createElement('input');
@@ -39,8 +40,6 @@ export function List({ data, listToken }) {
 		document.execCommand('copy');
 		document.body.removeChild(tempInput);
 
-		// You can provide feedback to the user that the token has been copied
-		// For example, you can display a tooltip or a message
 		alert('List Token copied to clipboard!');
 	};
 
@@ -52,7 +51,7 @@ export function List({ data, listToken }) {
 				<button onClick={handleCopyToken}>Copy Token</button>
 			</div>
 			<form className="filter-form">
-				<label htmlFor="search-term">Filter items:</label>
+				<label htmlFor="search-term">Search items:</label>
 				<input
 					type="text"
 					id="search-term"
