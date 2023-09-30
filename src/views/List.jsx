@@ -66,7 +66,12 @@ export function List({ data, listToken }) {
 	) : (
 		<>
 			<p>The shopping list is currently empty</p>
-			<button onClick={handleAddItem}>Add Item</button>
+			<button
+				className="button-primary add-item-button"
+				onClick={handleAddItem}
+			>
+				Add Item
+			</button>
 		</>
 	);
 }

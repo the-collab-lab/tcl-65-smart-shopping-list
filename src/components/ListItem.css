@@ -22,6 +22,10 @@
 	--inactive-bg: hsla(var(--contrast-hsl-vals), 0.1);
 }
 
+.ListItem:has(input[type='checkbox']:checked) {
+	background-color: transparent;
+}
+
 label {
 	display: inherit;
 	align-items: inherit;
@@ -83,4 +87,12 @@ input[type='checkbox'] {
 .ListItem button {
 	background-color: var(--color-contrast);
 	vertical-align: baseline;
+	padding: 0.3rem 1rem;
+	border-radius: 2px;
+	margin: 2px;
+	border-width: 1px;
+}
+
+.ListItem button:hover {
+	background-color: var(--color-bg);
 }

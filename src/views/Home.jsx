@@ -37,7 +37,7 @@ export function Home({ setListToken, handleNewToken }) {
 					onChange={(event) => setInputToken(event.target.value)}
 					required
 				/>
-
+				<br />
 				<button type="submit">Submit</button>
 			</form>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
