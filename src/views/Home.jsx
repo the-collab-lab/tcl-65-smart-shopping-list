@@ -7,7 +7,7 @@ import { checkCount } from '../api/firebase';
 export function Home({ listToken, setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
 	const [tokenNotFoundMessage, setTokenNotFoundMessage] = useState('');
-	const [showChangeCurrentList, setShowChangeCurrentList] = useState(false);
+	const [showSwitchListForm, setShowSwitchListForm] = useState(false);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
@@ -22,35 +22,31 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 		}
 	};
 
-	const displayListTokenComponent = (
-		<div className="display-list-token">
+	const currentListDisplay = (
+		<div className="current-list-display">
 			<p>
 				Current list token: <strong>{listToken}</strong>
 			</p>
-			<button onClick={() => setShowChangeCurrentList(true)}>
-				change current list
+			<button onClick={() => setShowSwitchListForm(!showSwitchListForm)}>
+				{showSwitchListForm ? 'Stay on this list' : 'Switch list'}
 			</button>
 		</div>
 	);
-	const changeCurrentListComponent = (
-		<div className="switch-list">
-			<Link to="/list">
-				<button onClick={handleNewToken}>Create a New List</button>
-			</Link>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="list-token">Enter Token</label>
-				<input
-					type="text"
-					id="list-token"
-					placeholder="Start typing here.."
-					value={inputToken}
-					onChange={(event) => setInputToken(event.target.value)}
-					required
-				/>
-				<button type="submit">Join List</button>
-			</form>
+
+	const switchListForm = (
+		<form onSubmit={handleSubmit}>
+			<label htmlFor="list-token">Enter Token</label>
+			<input
+				type="text"
+				id="list-token"
+				placeholder="Start typing here.."
+				value={inputToken}
+				onChange={(event) => setInputToken(event.target.value)}
+				required
+			/>
+			<button type="submit">Join List</button>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
-		</div>
+		</form>
 	);
 
 	return (
@@ -58,8 +54,11 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			{listToken && displayListTokenComponent}
-			{!listToken || (showChangeCurrentList && changeCurrentListComponent)}
+			{listToken && currentListDisplay}
+			{(!listToken || showSwitchListForm) && switchListForm}
+			<Link to="/list">
+				<button onClick={handleNewToken}>Create a New List</button>
+			</Link>
 		</div>
 	);
 }
