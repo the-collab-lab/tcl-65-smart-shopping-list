@@ -45,3 +45,4 @@ export function Home({ setListToken, handleNewToken }) {
 		</div>
 	);
 }
+//add show prior lists so User can choose what list they want to join or switch to
