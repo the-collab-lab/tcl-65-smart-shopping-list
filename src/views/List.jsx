@@ -34,7 +34,6 @@ export function List({ data, listToken }) {
 
 	return data.length > 0 ? (
 		<>
-			<p>{listToken}</p>
 			<form className="filter-form">
 				<label htmlFor="search-term">
 					Filter items:{'  '}
