@@ -4,9 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
 
-export function Home({ setListToken, handleNewToken }) {
+export function Home({ listToken, setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
 	const [tokenNotFoundMessage, setTokenNotFoundMessage] = useState('');
+	const [showChangeCurrentList, setShowChangeCurrentList] = useState(false);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
@@ -21,11 +22,18 @@ export function Home({ setListToken, handleNewToken }) {
 		}
 	};
 
-	return (
-		<div className="Home">
+	const displayListTokenComponent = (
+		<div className="display-list-token">
 			<p>
-				Hello from the home (<code>/</code>) page!
+				Current list token: <strong>{listToken}</strong>
 			</p>
+			<button onClick={() => setShowChangeCurrentList(true)}>
+				change current list
+			</button>
+		</div>
+	);
+	const changeCurrentListComponent = (
+		<div className="switch-list">
 			<Link to="/list">
 				<button onClick={handleNewToken}>Create a New List</button>
 			</Link>
@@ -42,6 +50,16 @@ export function Home({ setListToken, handleNewToken }) {
 				<button type="submit">Join List</button>
 			</form>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
+		</div>
+	);
+
+	return (
+		<div className="Home">
+			<p>
+				Hello from the home (<code>/</code>) page!
+			</p>
+			{listToken && displayListTokenComponent}
+			{!listToken || (showChangeCurrentList && changeCurrentListComponent)}
 		</div>
 	);
 }
