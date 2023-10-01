@@ -6,6 +6,7 @@ import {
 	doc,
 	updateDoc,
 	deleteDoc,
+
 	//increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
@@ -23,6 +24,7 @@ import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
  * @param {string | null} listId
  * @see https://firebase.google.com/docs/firestore/query-data/listen
  */
+
 export function useShoppingListData(listId) {
 	// Start with an empty array for our data.
 	/** @type {import('firebase/firestore').DocumentData[]} */
