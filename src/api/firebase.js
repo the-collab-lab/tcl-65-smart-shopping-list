@@ -6,11 +6,16 @@ import {
 	doc,
 	updateDoc,
 	deleteDoc,
+
 	//increment,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { db } from './config';
-import { getDaysBetweenDates, getFutureDate } from '../utils';
+import {
+	ONE_DAY_IN_MILLISECONDS,
+	getDaysBetweenDates,
+	getFutureDate,
+} from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
@@ -19,6 +24,7 @@ import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
  * @param {string | null} listId
  * @see https://firebase.google.com/docs/firestore/query-data/listen
  */
+
 export function useShoppingListData(listId) {
 	// Start with an empty array for our data.
 	/** @type {import('firebase/firestore').DocumentData[]} */
@@ -111,8 +117,7 @@ export async function updateItem(listId, item) {
 			item.estimatedDaysUntilNextPurchase,
 			daysSinceLastPurchase,
 			item.totalPurchases,
-		) *
-		(24 * 60 * 60 * 1000); // Convert to Milliseconds;
+		) * ONE_DAY_IN_MILLISECONDS; // Convert to Milliseconds;
 
 	const currentDateInMs = new Date().getTime();
 	const nextPurchaseDateInMs = estimatedDaysUntilNextPurchase + currentDateInMs;
