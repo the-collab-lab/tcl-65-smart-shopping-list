@@ -32,24 +32,8 @@ export function List({ data, listToken }) {
 		navigate('/add-item');
 	};
 
-	const handleCopyToken = () => {
-		// Create a temporary input element to copy the token
-		const tempInput = document.createElement('input');
-		tempInput.value = listToken;
-		document.body.appendChild(tempInput);
-		tempInput.select();
-		document.execCommand('copy');
-		document.body.removeChild(tempInput);
-
-		alert('List Token copied to clipboard!');
-	};
-
 	return data.length > 0 ? (
 		<>
-			<div>
-				<span>{listToken}</span>
-				<button onClick={handleCopyToken}>Copy Token</button>
-			</div>
 			<form className="filter-form">
 				<label htmlFor="search-term">
 					Search items:{'  '}

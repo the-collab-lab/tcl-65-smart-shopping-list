@@ -1,5 +1,4 @@
 import { NavLink, Outlet } from 'react-router-dom';
-
 import './Layout.css';
 
 /**
@@ -11,13 +10,28 @@ import './Layout.css';
  */
 
 export function Layout({ listToken }) {
+	const handleCopyToken = () => {
+		// Create a temporary input element to copy the token
+		const tempInput = document.createElement('input');
+		tempInput.value = listToken;
+		document.body.appendChild(tempInput);
+		tempInput.select();
+		document.execCommand('copy');
+		document.body.removeChild(tempInput);
+
+		alert('List Token copied to clipboard!');
+	};
+
 	return (
 		<>
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Fresh Out Of...</h1>
 					<h2>Smart shopping list</h2>
-					<p className="list-token">{listToken}</p>
+					<div className="list-token">
+						<span>{listToken}</span>
+						<button onClick={handleCopyToken}>Copy Token</button>
+					</div>
 				</header>
 				<main className="Layout-main">
 					<Outlet />
