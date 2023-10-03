@@ -2,10 +2,8 @@ import { useState } from 'react';
 import './ListItem.css';
 import { ONE_DAY_IN_MILLISECONDS, getDaysBetweenDates } from '../utils';
 import { deleteItem, updateItem } from '../api/firebase';
-import { useState } from 'react';
 
 export function ListItem({ item, listId }) {
-
 	const [error, setError] = useState('');
 	const { name, id, dateLastPurchased } = item;
 	const [isChecked, setIsChecked] = useState(
@@ -13,13 +11,19 @@ export function ListItem({ item, listId }) {
 			false,
 	);
 
-	const toggleCheckBox = () => {
-		// Toggle the checked state
-		setIsChecked(!isChecked);
-
-		// Conditionally call updateItem based on the checked state
+	const toggleCheckBox = async () => {
 		if (!isChecked) {
-			updateItem(listId, item);
+			try {
+				await updateItem(listId, item);
+				setIsChecked(!isChecked); // Only change isChecked after a successful update
+			} catch (err) {
+				setError('Error updating the item. Please try again.');
+				console.log(err);
+				setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
+			}
+		} else {
+			// You don't have logic for this branch. Do you intend to handle unchecked -> checked transition?
+			setIsChecked(!isChecked);
 		}
 	};
 
@@ -42,24 +46,18 @@ export function ListItem({ item, listId }) {
 			return 'not soon';
 		}
 	}
+
 	const indicatorClass = `indicator-${determineItemIndicator(item).replaceAll(
 		' ',
 		'-',
 	)}`;
 
-	const handleUpdate = async () => {
-		const error = await updateItem(listId, item);
-		if (error) {
-			setError('Error updating the item. Please try again.');
-			setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
-		}
-	};
-
 	const handleDelete = async (e) => {
 		e.preventDefault();
 		if (window.confirm(`Do you really want to delete ${name}?`)) {
-			const error = await deleteItem(listId, id);
-			if (error) {
+			try {
+				await deleteItem(listId, id);
+			} catch (err) {
 				setError('Error deleting the item. Please try again.');
 				setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
 			}
@@ -69,17 +67,12 @@ export function ListItem({ item, listId }) {
 	return (
 		<li className={`ListItem ${indicatorClass}`}>
 			<label>
-				<input
-					type="checkbox"
-					checked={isChecked}
-					onChange={() => toggleCheckBox()}
-				/>
+				<input type="checkbox" checked={isChecked} onChange={toggleCheckBox} />
 				{name}
 				<span>{determineItemIndicator(item)}</span>
 			</label>
 			<button onClick={handleDelete}>Delete</button>
-			{error && <p className="error-message">{error}</p>}{' '}
-			{/* Display error message */}
+			{error && <p className="error-message">{error}</p>}
 		</li>
 	);
 }
