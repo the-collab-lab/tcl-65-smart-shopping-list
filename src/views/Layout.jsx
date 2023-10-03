@@ -30,7 +30,9 @@ export function Layout({ listToken }) {
 					<h2>Smart shopping list</h2>
 					<div className="list-token">
 						<span>{listToken}</span>
-						<button onClick={handleCopyToken}>Copy Token</button>
+						<button className="button-small" onClick={handleCopyToken}>
+							Copy Token
+						</button>
 					</div>
 				</header>
 				<main className="Layout-main">
