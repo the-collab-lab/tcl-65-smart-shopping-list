@@ -2,8 +2,10 @@
 	display: grid;
 	grid-template-columns: 1fr fit-content(20%);
 	align-items: center;
-	font-size: 1.2em;
+	font-size: 1em;
 	list-style: none;
+	padding: 3px;
+	border-radius: 2px;
 
 	/* color variables */
 	--overdue: hsl(0, 74%, 65%);
@@ -11,6 +13,17 @@
 	--kind-of-soon: hsl(60, 100%, 50%);
 	--not-soon: hsl(174, 72%, 56%);
 	--inactive: hsl(300, 24%, 80%);
+
+	/* opacity variables */
+	--overdue-bg: hsla(var(--contrast-hsl-vals), 0.95);
+	--soon-bg: hsla(var(--contrast-hsl-vals), 0.75);
+	--kind-of-soon-bg: hsla(var(--contrast-hsl-vals), 0.5);
+	--not-soon-bg: hsla(var(--contrast-hsl-vals), 0.25);
+	--inactive-bg: hsla(var(--contrast-hsl-vals), 0.1);
+}
+
+.ListItem:has(input[type='checkbox']:checked) {
+	background-color: transparent;
 }
 
 label {
@@ -48,21 +61,46 @@ label {
 }
 
 .indicator-soon {
-	color: var(--soon);
+	/* color: var(--soon); */
+	background-color: var(--soon-bg);
 }
 
 .indicator-kind-of-soon {
-	color: var(--kind-of-soon);
+	/* color: var(--kind-of-soon); */
+	background-color: var(--kind-of-soon-bg);
 }
 
 .indicator-not-soon {
-	color: var(--not-soon);
+	/* color: var(--not-soon); */
+	background-color: var(--not-soon-bg);
 }
 
 .indicator-inactive {
-	color: var(--inactive);
+	/* color: var(--inactive); */
+	background-color: var(--inactive-bg);
 }
 
 .indicator-overdue {
-	color: var(--overdue);
+	/* color: var(--overdue); */
+	background-color: var(--overdue-bg);
+}
+
+input[type='checkbox'] {
+	width: 28px;
+	height: 28px;
+	accent-color: black;
+	padding: 0;
+}
+
+.ListItem button {
+	background-color: var(--color-contrast);
+	vertical-align: baseline;
+	padding: 0.3rem 1rem;
+	border-radius: 2px;
+	margin: 2px;
+	border-width: 1px;
+}
+
+.ListItem button:hover {
+	background-color: var(--color-bg);
 }

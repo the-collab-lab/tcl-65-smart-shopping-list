@@ -7,4 +7,25 @@
 	border: 0.2rem solid var(--overdue);
 	display: flex;
 	justify-content: center;
+
+.set-token-area {
+	border-top: 2px solid var(--color-border);
+	width: fit-content;
+	padding: 1.5rem 1rem 1.5rem 1rem;
+	margin: 2rem 0 1.5rem 0;
+	border-radius: 2px;
+}
+
+input[type='text'],
+select {
+	vertical-align: top;
+}
+
+.Home label {
+	margin-bottom: 1rem;
+}
+
+.Home input {
+	margin-bottom: 1.5rem;
+
 }

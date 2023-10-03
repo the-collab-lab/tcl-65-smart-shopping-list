@@ -1,25 +1,26 @@
 import { useState } from 'react';
 import './ListItem.css';
-import { getDaysBetweenDates } from '../utils';
+import { ONE_DAY_IN_MILLISECONDS, getDaysBetweenDates } from '../utils';
 import { deleteItem, updateItem } from '../api/firebase';
+import { useState } from 'react';
 
 export function ListItem({ item, listId }) {
+
 	const [error, setError] = useState('');
-	const { name, id, dateLastPurchased, totalPurchases } = item;
-	// Function to check if the item was purchased within the last 24 hours
-	const isPurchased = () => {
-		const oneDayInMillis = 24 * 60 * 60 * 1000;
+	const { name, id, dateLastPurchased } = item;
+	const [isChecked, setIsChecked] = useState(
+		Date.now() - dateLastPurchased?.toMillis() < ONE_DAY_IN_MILLISECONDS ||
+			false,
+	);
 
-		// If dateLastPurchased exists, check if it was purchased within the last 24 hours
-		if (dateLastPurchased) {
-			return (
-				new Date() - new Date(dateLastPurchased?.seconds * 1000) <=
-				oneDayInMillis
-			); // Converted dateLastPurchased to milliseconds for comparison
+	const toggleCheckBox = () => {
+		// Toggle the checked state
+		setIsChecked(!isChecked);
+
+		// Conditionally call updateItem based on the checked state
+		if (!isChecked) {
+			updateItem(listId, item);
 		}
-
-		// Return false if dateLastPurchased does not exist
-		return false;
 	};
 
 	function determineItemIndicator(item) {
@@ -66,15 +67,15 @@ export function ListItem({ item, listId }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className={`ListItem ${indicatorClass}`}>
 			<label>
 				<input
 					type="checkbox"
-					checked={isPurchased()}
-					onChange={handleUpdate}
+					checked={isChecked}
+					onChange={() => toggleCheckBox()}
 				/>
 				{name}
-				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
+				<span>{determineItemIndicator(item)}</span>
 			</label>
 			<button onClick={handleDelete}>Delete</button>
 			{error && <p className="error-message">{error}</p>}{' '}
