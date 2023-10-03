@@ -21,10 +21,10 @@
 	background-color: var(--color-bg);
 	padding-bottom: 0.5rem;
 	padding-top: max(env(safe-area-inset-top), 1rem);
-	display: flex; /* Use flex display */
-	flex-direction: column; /* Stack children vertically */
-	align-items: center; /* Center children horizontally */
-	justify-content: center; /* Center children vertically */
+	display: flex; /* Uses flex display */
+	flex-direction: column; /* Stacks children vertically */
+	align-items: center; /* Centers children horizontally */
+	justify-content: center; /* Centers children vertically */
 }
 
 @media screen and (max-width: 500px) {
@@ -37,7 +37,7 @@
 
 .Layout-header > h1 {
 	margin: 0;
-	font-size: 2em; /* Adjust font size if needed */
+	font-size: 2em; /* Adjusts font size if needed */
 }
 
 .Layout-header > h2 {
@@ -46,16 +46,16 @@
 	grid-area: smart;
 }
 
-/* Add a class to style the buttons */
+/* Adds a class to style the buttons */
 .button-small {
-	font-size: 1rem; /* Adjust font size to make it smaller */
-	padding: 0.5rem 1rem; /* Adjust padding to make it smaller */
+	font-size: 1rem; /* Adjusts font size to make it smaller */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it smaller */
 }
 
-/* Add a class to style medium-sized buttons */
+/* Adds a class to style medium-sized buttons */
 .button-medium {
-	font-size: 1.2em; /* Adjust font size to make it medium-sized */
-	padding: 0.5rem 1rem; /* Adjust padding to make it medium-sized */
+	font-size: 1.2em; /* Adjusts font size to make it medium-sized */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it medium-sized */
 }
 .list-token {
 	grid-area: list;

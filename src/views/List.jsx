@@ -74,12 +74,3 @@ export function List({ data, listToken }) {
 		</>
 	);
 }
-/*<ul> 
-{filteredData.map((item) => (
-	<ListItem
-		key={item.id}
-		item={item}
-		listId={listToken} //added listId
-	/>
-))}
-</ul> line 55 removed*/
