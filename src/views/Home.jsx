@@ -1,4 +1,5 @@
 import './Home.css';
+// imported useNavigate
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
@@ -26,11 +27,9 @@ export function Home({ setListToken, handleNewToken }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<Link to="/list">
-				<button className="button-primary" onClick={handleNewToken}>
-					Create a New List
-				</button>
+				<button onClick={handleNewToken}>Create a New List</button>
 			</Link>
-			<form onSubmit={handleSubmit} className="set-token-area">
+			<form onSubmit={handleSubmit}>
 				<label htmlFor="list-token">Enter Token</label>
 				<input
 					type="text"
@@ -40,7 +39,6 @@ export function Home({ setListToken, handleNewToken }) {
 					onChange={(event) => setInputToken(event.target.value)}
 					required
 				/>
-				<br />
 				<button type="submit">Join List</button>
 			</form>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}

@@ -21,11 +21,10 @@
 	background-color: var(--color-bg);
 	padding-bottom: 0.5rem;
 	padding-top: max(env(safe-area-inset-top), 1rem);
-	display: grid;
-	grid-template-areas:
-		'fresh smart'
-		'fresh list';
-	justify-content: space-evenly;
+	display: flex; /* Use flex display */
+	flex-direction: column; /* Stack children vertically */
+	align-items: center; /* Center children horizontally */
+	justify-content: center; /* Center children vertically */
 }
 
 @media screen and (max-width: 500px) {
@@ -38,7 +37,7 @@
 
 .Layout-header > h1 {
 	margin: 0;
-	grid-area: fresh;
+	font-size: 2em; /* Adjust font size if needed */
 }
 
 .Layout-header > h2 {
