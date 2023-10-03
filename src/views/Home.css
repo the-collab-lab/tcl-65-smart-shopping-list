@@ -18,12 +18,12 @@ select {
 .Home input {
 	margin-bottom: 1.5rem;
 }
-/* Add a class to style medium-sized buttons */
+/* Adds a class to style medium-sized buttons */
 .button-medium {
-	font-size: 1.2em; /* Adjust font size to make it medium-sized */
-	padding: 0.5rem 1rem; /* Adjust padding to make it medium-sized */
+	font-size: 1.2em; /* Adjusts font size to make it medium-sized */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it medium-sized */
 }
-/* Center the contents of the "centered-container" */
+/* Centers the contents of the "centered-container" */
 .centered-container {
 	display: flex;
 	flex-direction: column;
