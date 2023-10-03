@@ -18,3 +18,8 @@ select {
 .Home input {
 	margin-bottom: 1.5rem;
 }
+/* Add a class to style medium-sized buttons */
+.button-medium {
+	font-size: 1.2em; /* Adjust font size to make it medium-sized */
+	padding: 0.5rem 1rem; /* Adjust padding to make it medium-sized */
+}

@@ -27,7 +27,9 @@ export function Home({ setListToken, handleNewToken }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<Link to="/list">
-				<button onClick={handleNewToken}>Create a New List</button>
+				<button className="button-medium" onClick={handleNewToken}>
+					Create a New List
+				</button>
 			</Link>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="list-token">Enter Token</label>
@@ -39,7 +41,9 @@ export function Home({ setListToken, handleNewToken }) {
 					onChange={(event) => setInputToken(event.target.value)}
 					required
 				/>
-				<button type="submit">Join List</button>
+				<button className="button-medium" type="submit">
+					Join List
+				</button>
 			</form>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
 		</div>
