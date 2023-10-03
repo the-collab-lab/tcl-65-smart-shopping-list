@@ -1,3 +1,13 @@
+.error-message {
+	--overdue: hsl(0, 74%, 65%);
+
+	color: var(--overdue);
+	font-size: 1.8rem;
+	margin-top: 0.5rem;
+	border: 0.2rem solid var(--overdue);
+	display: flex;
+	justify-content: center;
+
 .set-token-area {
 	border-top: 2px solid var(--color-border);
 	width: fit-content;
@@ -17,4 +27,5 @@ select {
 
 .Home input {
 	margin-bottom: 1.5rem;
+
 }
