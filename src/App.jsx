@@ -27,9 +27,6 @@ export function App() {
 	);
 
 	const handleNewToken = () => {
-		// //if token is true do nothing
-		// if (listToken) return;
-		// //if token is false setlistToken calls the generateToken function and sets the result to state var of listToken
 		setListToken(generateToken());
 	};
 
