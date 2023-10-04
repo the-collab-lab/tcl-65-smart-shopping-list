@@ -82,7 +82,7 @@
 }
 
 .Nav-link {
-	--color-text: var(--color-accent);
+	--color-text: var(--color-link);
 
 	color: var(--color-text);
 	font-size: 1.4em;

@@ -7,12 +7,12 @@
 	padding: 3px;
 	border-radius: 2px;
 
-	/* color variables */
-	--overdue: hsl(0, 74%, 65%);
-	--soon: hsl(39, 100%, 50%);
-	--kind-of-soon: hsl(60, 100%, 50%);
-	--not-soon: hsl(174, 72%, 56%);
-	--inactive: hsl(300, 24%, 80%);
+	/* color variables - light */
+	--overdue: rgb(232, 99, 99);
+	--soon: rgb(230, 115, 0);
+	--kind-of-soon: rgb(129, 170, 9);
+	--not-soon: rgb(5, 148, 161);
+	--inactive: rgb(97, 90, 115);
 
 	/* opacity variables */
 	--overdue-bg: hsla(var(--contrast-hsl-vals), 0.95);
@@ -33,14 +33,14 @@ label {
 	gap: 2%;
 }
 
-@media screen and (prefers-color-scheme: light) {
+@media screen and (prefers-color-scheme: dark) {
 	.ListItem {
-		/* color variables */
-		--overdue: rgb(232, 99, 99);
-		--soon: rgb(230, 115, 0);
-		--kind-of-soon: rgb(129, 170, 9);
-		--not-soon: rgb(5, 148, 161);
-		--inactive: rgb(97, 90, 115);
+		/* color variables - dark*/
+		--overdue: hsl(0, 74%, 65%);
+		--soon: hsl(39, 100%, 50%);
+		--kind-of-soon: hsl(60, 100%, 50%);
+		--not-soon: hsl(174, 72%, 56%);
+		--inactive: hsl(300, 24%, 80%);
 	}
 }
 

@@ -3,39 +3,41 @@
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
 	--color-white: hsla(220, 13%, 98%, 1);
 	--color-gray-light: hsla(220, 13%, 94%, 1);
-	--color-emerald-green: hsla(168, 92%, 25%, 1);
-	--color-vermillion-green: hsla(168, 92%, 43%, 1);
 	--color-cobalt-blue: hsla(215, 100%, 34%, 1);
 	--color-pastel-blue: hsla(215, 100%, 73%, 1);
 	--color-red: hsl(0, 68%, 42%);
 
-	--color-accent: var(--color-pastel-blue);
-	--color-bg: var(--color-black);
-	--color-border: hsla(220, 13%, 32%, 1);
+	/* light mode color defaults */
+	--color-link: var(--color-cobalt-blue);
+	--color-bg: var(--color-white);
+	--color-border: hsla(220, 13%, 78%, 1);
+	--color-text: var(--color-black);
+
+	/* light mode contrast color */
+	--example-contrast-hsl-vals: hsl(60, 90%, 50%);
+	--contrast-hsl-vals: 60, 90%, 50%;
+
 	--color-error: var(--color-red);
-	--color-text: var(--color-white);
 	--color-shadow: var(--color-gray-dark);
-
-	--contrast-hsl-vals: 18, 85%, 45%;
-	--color-contrast: hsl(var(--contrast-hsl-vals));
-
-	--shadow-hsl-vals: 18, 50%, 5%;
 }
 
-@media screen and (prefers-color-scheme: light) {
+@media screen and (prefers-color-scheme: dark) {
 	:root {
-		--color-accent: var(--color-cobalt-blue);
-		--color-bg: var(--color-white);
-		--color-border: hsla(220, 13%, 78%, 1);
-		--color-text: var(--color-black);
+		/* dark mode color defaults */
+		--color-link: var(--color-pastel-blue);
+		--color-bg: var(--color-black);
+		--color-border: hsla(220, 13%, 32%, 1);
+		--color-text: var(--color-white);
 
-		--contrast-hsl-vals: 60, 90%, 50%;
-		--shadow-hsl-vals: 60, 50%, 5%;
+		/* dark mode contrast color */
+		--example-contrast-hsl-vals: hsl(18, 85%, 45%);
+		--contrast-hsl-vals: 18, 85%, 45%;
+		--color-contrast: hsl(var(--contrast-hsl-vals));
 	}
 }
 
 :root.theme-light {
-	--color-accent: var(--color-cobalt-blue);
+	--color-link: var(--color-cobalt-blue);
 	--color-bg: var(--color-white);
 	--color-border: hsla(220, 13%, 78%, 1);
 	--color-text: var(--color-black);
@@ -85,35 +87,6 @@ body {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-code {
-	--color-bg: var(--color-gray-dark);
-	--color-text: var(--color-accent);
-
-	background-color: var(--color-bg);
-	border-radius: 4px;
-	color: var(--color-text);
-	display: inline-block;
-	font-family:
-		Menlo,
-		Consolas,
-		Monaco,
-		Liberation Mono,
-		Lucida Console,
-		monospace;
-	font-size: 0.9em;
-	padding: 0.15em 0.15em;
-}
-
-@media screen and (prefers-color-scheme: light) {
-	code {
-		--color-bg: var(--color-gray-light);
-	}
-}
-
-:root.theme-light code {
-	--color-bg: var(--color-gray-light);
 }
 
 label:hover,
