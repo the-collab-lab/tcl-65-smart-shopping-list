@@ -20,6 +20,7 @@
 	--color-contrast: hsl(var(--contrast-hsl-vals));
 
 	--shadow-hsl-vals: 18, 50%, 5%;
+	/*--background-image: url('https://imgur.com/Vkq9ZTg');*/
 }
 
 @media screen and (prefers-color-scheme: light) {
@@ -158,4 +159,11 @@ input,
 select {
 	padding: 0.4rem;
 	font-size: 1em;
+}
+body {
+	background-image: url('_resources/images/lemons copy.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed; /* Optional: Keep the background fixed */
+	background-position: center center;
 }
