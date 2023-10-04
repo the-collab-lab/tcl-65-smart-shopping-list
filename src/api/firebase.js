@@ -130,6 +130,7 @@ export async function updateItem(listId, item) {
 		});
 	} catch (error) {
 		console.error('Error updating item:', error);
+		throw error;
 	}
 }
 
@@ -138,6 +139,7 @@ export async function deleteItem(listToken, itemId) {
 		await deleteDoc(doc(db, listToken, itemId));
 	} catch (error) {
 		console.log('Error deleting item:', error);
+		throw error;
 	}
 }
 

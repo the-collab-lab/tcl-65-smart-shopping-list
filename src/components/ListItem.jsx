@@ -1,22 +1,29 @@
+import { useState } from 'react';
 import './ListItem.css';
 import { ONE_DAY_IN_MILLISECONDS, getDaysBetweenDates } from '../utils';
 import { deleteItem, updateItem } from '../api/firebase';
-import { useState } from 'react';
 
 export function ListItem({ item, listId }) {
+	const [error, setError] = useState('');
 	const { name, id, dateLastPurchased } = item;
 	const [isChecked, setIsChecked] = useState(
 		Date.now() - dateLastPurchased?.toMillis() < ONE_DAY_IN_MILLISECONDS ||
 			false,
 	);
 
-	const toggleCheckBox = () => {
-		// Toggle the checked state
-		setIsChecked(!isChecked);
-
-		// Conditionally call updateItem based on the checked state
+	const toggleCheckBox = async () => {
 		if (!isChecked) {
-			updateItem(listId, item);
+			try {
+				await updateItem(listId, item);
+				setIsChecked(!isChecked); // Only change isChecked after a successful update
+			} catch (err) {
+				setError('Error updating the item. Please try again.');
+				console.log(err);
+				setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
+			}
+		} else {
+			// You don't have logic for this branch. Do you intend to handle unchecked -> checked transition?
+			setIsChecked(!isChecked);
 		}
 	};
 
@@ -39,30 +46,33 @@ export function ListItem({ item, listId }) {
 			return 'not soon';
 		}
 	}
+
 	const indicatorClass = `indicator-${determineItemIndicator(item).replaceAll(
 		' ',
 		'-',
 	)}`;
 
-	const handleDelete = (e) => {
+	const handleDelete = async (e) => {
 		e.preventDefault();
 		if (window.confirm(`Do you really want to delete ${name}?`)) {
-			deleteItem(listId, id);
+			try {
+				await deleteItem(listId, id);
+			} catch (err) {
+				setError('Error deleting the item. Please try again.');
+				setTimeout(() => setError(''), 5000); // Clear error after 5 seconds
+			}
 		}
 	};
 
 	return (
-		<li className="ListItem">
+		<li className={`ListItem ${indicatorClass}`}>
 			<label>
-				<input
-					type="checkbox"
-					checked={isChecked}
-					onChange={() => toggleCheckBox()}
-				/>
+				<input type="checkbox" checked={isChecked} onChange={toggleCheckBox} />
 				{name}
-				<span className={indicatorClass}>{determineItemIndicator(item)}</span>
+				<span>{determineItemIndicator(item)}</span>
 			</label>
 			<button onClick={handleDelete}>Delete</button>
+			{error && <p className="error-message">{error}</p>}
 		</li>
 	);
 }

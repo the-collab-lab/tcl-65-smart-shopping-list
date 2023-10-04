@@ -1,5 +1,4 @@
 import './Home.css';
-// imported useNavigate
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
@@ -57,7 +56,9 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 			{listToken && currentListDisplay}
 			{(!listToken || showSwitchListForm) && switchListForm}
 			<Link to="/list">
-				<button onClick={handleNewToken}>Create a New List</button>
+				<button className="button-primary" onClick={handleNewToken}>
+					Create a New List
+				</button>
 			</Link>
 		</div>
 	);

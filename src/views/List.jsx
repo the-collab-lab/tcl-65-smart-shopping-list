@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ListItem } from '../components';
 import { useNavigate } from 'react-router-dom';
+import './List.css';
 
 export function List({ data, listToken }) {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -31,34 +32,19 @@ export function List({ data, listToken }) {
 		navigate('/add-item');
 	};
 
-	const handleCopyToken = () => {
-		// Create a temporary input element to copy the token
-		const tempInput = document.createElement('input');
-		tempInput.value = listToken;
-		document.body.appendChild(tempInput);
-		tempInput.select();
-		document.execCommand('copy');
-		document.body.removeChild(tempInput);
-
-		alert('List Token copied to clipboard!');
-	};
-
 	return data.length > 0 ? (
 		<>
-			<p>{listToken}</p>
-			<div>
-				<span>{listToken}</span>
-				<button onClick={handleCopyToken}>Copy Token</button>
-			</div>
 			<form className="filter-form">
-				<label htmlFor="search-term">Search items:</label>
-				<input
-					type="text"
-					id="search-term"
-					value={searchTerm}
-					placeholder="Start typing here.."
-					onChange={(event) => setSearchTerm(event.target.value)}
-				></input>
+				<label htmlFor="search-term">
+					Search items:{'  '}
+					<input
+						type="text"
+						id="search-term"
+						value={searchTerm}
+						placeholder="Start typing here.."
+						onChange={(event) => setSearchTerm(event.target.value)}
+					></input>
+				</label>
 				{searchTerm.length > 0 && (
 					<button type="reset" className="clear" onClick={handleClear}>
 						X
@@ -79,7 +65,12 @@ export function List({ data, listToken }) {
 	) : (
 		<>
 			<p>The shopping list is currently empty</p>
-			<button onClick={handleAddItem}>Add Item</button>
+			<button
+				className="button-primary add-item-button"
+				onClick={handleAddItem}
+			>
+				Add Item
+			</button>
 		</>
 	);
 }
