@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
 
-export function Home({ setListToken, handleNewToken }) {
+export function Home({ listToken, setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
 	const [tokenNotFoundMessage, setTokenNotFoundMessage] = useState('');
+	const [showSwitchListForm, setShowSwitchListForm] = useState(false);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
@@ -20,32 +21,45 @@ export function Home({ setListToken, handleNewToken }) {
 		}
 	};
 
+	const currentListDisplay = (
+		<div className="current-list-display">
+			<p>
+				Current list token: <strong>{listToken}</strong>
+			</p>
+			<button onClick={() => setShowSwitchListForm(!showSwitchListForm)}>
+				{showSwitchListForm ? 'Stay on this list' : 'Switch list'}
+			</button>
+		</div>
+	);
+
+	const switchListForm = (
+		<form onSubmit={handleSubmit}>
+			<label htmlFor="list-token">Enter Token</label>
+			<input
+				type="text"
+				id="list-token"
+				placeholder="Start typing here.."
+				value={inputToken}
+				onChange={(event) => setInputToken(event.target.value)}
+				required
+			/>
+			<button type="submit">Join List</button>
+			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
+		</form>
+	);
+
 	return (
 		<div className="Home">
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
+			{listToken && currentListDisplay}
+			{(!listToken || showSwitchListForm) && switchListForm}
 			<Link to="/list">
 				<button className="button-primary" onClick={handleNewToken}>
 					Create a New List
 				</button>
 			</Link>
-			<form onSubmit={handleSubmit} className="set-token-area">
-				<label htmlFor="list-token">Enter Token</label>
-				<input
-					type="text"
-					id="list-token"
-					placeholder="Start typing here.."
-					value={inputToken}
-					onChange={(event) => setInputToken(event.target.value)}
-					required
-				/>
-				<br />
-				<button type="submit">Join List</button>
-			</form>
-			{tokenNotFoundMessage && (
-				<p className="error-message">{tokenNotFoundMessage}</p>
-			)}
 		</div>
 	);
 }
