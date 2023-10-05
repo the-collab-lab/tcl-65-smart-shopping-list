@@ -161,7 +161,11 @@ select {
 	font-size: 1em;
 }
 body {
-	background-image: url('_resources/images/lemons copy.jpg');
+	background-image: url('_resources/images/lemons-blk.png');
+	@media screen and (prefers-color-scheme: light) {
+		background-image: url('_resources/images/lemons-wht.png');
+	}
+
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed; /* Optional: Keep the background fixed */
