@@ -7,6 +7,7 @@
 	border: 0.2rem solid var(--overdue);
 	display: flex;
 	justify-content: center;
+}
 
 .set-token-area {
 	border-top: 2px solid var(--color-border);
@@ -27,5 +28,4 @@ select {
 
 .Home input {
 	margin-bottom: 1.5rem;
-
 }

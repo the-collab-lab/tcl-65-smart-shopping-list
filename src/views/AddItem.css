@@ -1,4 +1,3 @@
-
 .error-message {
 	--overdue: hsl(0, 74%, 65%);
 
@@ -16,6 +15,7 @@
 	border: 0.2rem solid white;
 	display: flex;
 	justify-content: center;
+}
 
 #item-name,
 #anticipation {
@@ -25,5 +25,4 @@
 h2 {
 	font-size: 1em;
 	margin-top: 0;
-
 }
