@@ -19,7 +19,7 @@
 }
 
 .Layout-header {
-	background-color: var(--color-bg);
+	/*background-color: var(--color-bg);*/
 	padding-bottom: 0.5rem;
 	padding-top: max(env(safe-area-inset-top), 1rem);
 	display: flex; /* Uses flex display */
@@ -73,7 +73,7 @@
 }
 
 .Nav {
-	background-color: var(--color-bg);
+	/*background-color: var(--color-bg);*/
 	border-top: 1px solid var(--color-border);
 	bottom: 0;
 	display: flex;
