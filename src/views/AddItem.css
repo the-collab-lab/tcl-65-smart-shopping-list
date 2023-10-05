@@ -1,3 +1,22 @@
+
+.error-message {
+	--overdue: hsl(0, 74%, 65%);
+
+	color: var(--overdue);
+	font-size: 1.8rem;
+	margin-top: 0.5rem;
+	border: 0.2rem solid var(--overdue);
+	display: flex;
+	justify-content: center;
+}
+
+.success-message {
+	font-size: 1.8rem;
+	margin-top: 0.5rem;
+	border: 0.2rem solid white;
+	display: flex;
+	justify-content: center;
+
 #item-name,
 #anticipation {
 	margin: 1rem 0 1.5rem 0;
@@ -6,6 +25,7 @@
 h2 {
 	font-size: 1em;
 	margin-top: 0;
+
 }
 /* Reduce the size of the submit button */
 button.button-primary {
