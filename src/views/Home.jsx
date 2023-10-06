@@ -50,12 +50,11 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 
 	return (
 		<div className="Home">
-sb-layout-design
 			<p>Let's get started with a new shopping list!</p>
 			<p className="spacer"></p> {/* Adds more space below the text */}
 			<div className="centered-container">
-    {listToken && currentListDisplay}
-{(!listToken || showSwitchListForm) && switchListForm}
+				{listToken && currentListDisplay}
+				{(!listToken || showSwitchListForm) && switchListForm}
 				<Link to="/list">
 					<button className="button-medium" onClick={handleNewToken}>
 						Create a New List
@@ -85,7 +84,6 @@ sb-layout-design
 					</button>
 				</form>
 			</div>
-
 		</div>
 	);
 }
