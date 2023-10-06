@@ -68,7 +68,8 @@
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	overflow-y: scroll;
+	overflow-y: auto;
+	height: -webkit-fill-available;
 }
 
 .Nav {
