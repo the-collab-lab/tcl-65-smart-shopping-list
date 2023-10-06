@@ -26,8 +26,3 @@ h2 {
 	font-size: 1em;
 	margin-top: 0;
 }
-/* Reduce the size of the submit button */
-button.button-primary {
-	font-size: 1.2em; /* Adjusts font size to make match oter buttons */
-	padding: 0.5rem 1rem; /* Adjusts padding to make match oter buttons */
-}
