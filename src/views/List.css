@@ -10,4 +10,10 @@ ul {
 .filter-form {
 	padding: 1.5rem 0;
 	flex-direction: row;
+	gap: 1rem;
+	text-wrap: nowrap;
+}
+
+.filter-form button {
+	font-size: 1em;
 }
