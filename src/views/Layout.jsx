@@ -11,7 +11,7 @@ import './Layout.css';
 
 export function Layout({ listToken }) {
 	const handleCopyToken = () => {
-		// Create a temporary input element to copy the token
+		// Creates a temporary input element to copy the token
 		const tempInput = document.createElement('input');
 		tempInput.value = listToken;
 		document.body.appendChild(tempInput);
@@ -27,10 +27,15 @@ export function Layout({ listToken }) {
 			<div className="Layout">
 				<header className="Layout-header">
 					<h1>Fresh Out Of...</h1>
-					<h2>Smart shopping list</h2>
+					<h2>
+						Welcome to your Smart shopping list that learns your buying habits
+						over time!
+					</h2>
 					<div className="list-token">
 						<span>{listToken}</span>
-						<button onClick={handleCopyToken}>Copy Token</button>
+						<button className="button-small" onClick={handleCopyToken}>
+							Copy Token
+						</button>
 					</div>
 				</header>
 				<main className="Layout-main">

@@ -29,3 +29,29 @@ select {
 .Home input {
 	margin-bottom: 1.5rem;
 }
+/* Adds a class to style medium-sized buttons */
+.button-medium {
+	font-size: 1.2em; /* Adjusts font size to make it medium-sized */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it medium-sized */
+}
+/* Centers the contents of the "centered-container" */
+.centered-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+/* Centers the "Create a New List" button */
+.centered-container .button-medium {
+	margin: 0 auto; /* This centers the button horizontally */
+}
+/* Adds space between elements */
+.spacer {
+	margin: 1rem 0; /* Adjusts the margin as needed for the desired space */
+}
+/* Style for the "-or-" text */
+.or-text {
+	font-size: 1.5em; /* Adjusts the font size as needed */
+	margin-top: 1rem; /* Adds space above "-or-" */
+	margin-bottom: 1rem; /* Adds space below "-or-" */
+}

@@ -7,6 +7,7 @@
  *
  * @see: https://developer.mozilla.org/en-US/docs/Web/CSS/env
  */
+
 .Layout {
 	display: flex;
 	flex-direction: column;
@@ -18,14 +19,13 @@
 }
 
 .Layout-header {
-	background-color: var(--color-bg);
+	/*background-color: var(--color-bg);*/
 	padding-bottom: 0.5rem;
 	padding-top: max(env(safe-area-inset-top), 1rem);
-	display: grid;
-	grid-template-areas:
-		'fresh smart'
-		'fresh list';
-	justify-content: space-evenly;
+	display: flex; /* Uses flex display */
+	flex-direction: column; /* Stacks children vertically */
+	align-items: center; /* Centers children horizontally */
+	justify-content: center; /* Centers children vertically */
 }
 
 @media screen and (max-width: 500px) {
@@ -38,15 +38,26 @@
 
 .Layout-header > h1 {
 	margin: 0;
-	grid-area: fresh;
+	font-size: 2em; /* Adjusts font size if needed */
 }
 
 .Layout-header > h2 {
-	margin: 0;
+	margin: 1rem 0;
 	font-size: 1em;
 	grid-area: smart;
 }
 
+/* Adds a class to style the buttons */
+.button-small {
+	font-size: 1rem; /* Adjusts font size to make it smaller */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it smaller */
+}
+
+/* Adds a class to style medium-sized buttons */
+.button-medium {
+	font-size: 1.2em; /* Adjusts font size to make it medium-sized */
+	padding: 0.5rem 1rem; /* Adjusts padding to make it medium-sized */
+}
 .list-token {
 	grid-area: list;
 }
@@ -62,7 +73,7 @@
 }
 
 .Nav {
-	background-color: var(--color-bg);
+	/*background-color: var(--color-bg);*/
 	border-top: 1px solid var(--color-border);
 	bottom: 0;
 	display: flex;
