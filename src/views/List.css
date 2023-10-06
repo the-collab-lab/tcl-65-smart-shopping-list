@@ -9,4 +9,5 @@ ul {
 
 .filter-form {
 	padding: 1.5rem 0;
+	flex-direction: row;
 }

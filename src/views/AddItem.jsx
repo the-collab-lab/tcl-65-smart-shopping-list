@@ -27,8 +27,7 @@ export function AddItem({ listToken, data }) {
 					itemNames.indexOf(itemName.toLowerCase().replace(/[^a-z0-9]/gi, ''))
 				].name;
 			setMessage(`${existingItem} is already on the list.`);
-      setMessageType('error');
-
+			setMessageType('error');
 		} else {
 			try {
 				await addItem(listToken, {
@@ -47,7 +46,7 @@ export function AddItem({ listToken, data }) {
 	};
 
 	return (
-		<div>
+		<div className="centered-container">
 			<h2>What do you want to buy?</h2>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="item-name">Item Name: </label>
@@ -70,7 +69,7 @@ export function AddItem({ listToken, data }) {
 				</select>
 				<br />
 
-				<button type="submit" className="button-primary">
+				<button type="submit" className="button-primary add-item">
 					Submit
 				</button>
 			</form>
