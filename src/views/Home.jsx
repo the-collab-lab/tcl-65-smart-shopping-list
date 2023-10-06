@@ -26,7 +26,10 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 			<p>
 				Current list token: <strong>{listToken}</strong>
 			</p>
-			<button onClick={() => setShowSwitchListForm(!showSwitchListForm)}>
+			<button
+				className="button-medium"
+				onClick={() => setShowSwitchListForm(!showSwitchListForm)}
+			>
 				{showSwitchListForm ? 'Stay on this list' : 'Switch list'}
 			</button>
 		</div>
@@ -43,7 +46,9 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 				onChange={(event) => setInputToken(event.target.value)}
 				required
 			/>
-			<button type="submit">Join List</button>
+			<button className="button-medium" type="submit">
+				Join List
+			</button>
 			{tokenNotFoundMessage && <p>{tokenNotFoundMessage}</p>}
 		</form>
 	);
