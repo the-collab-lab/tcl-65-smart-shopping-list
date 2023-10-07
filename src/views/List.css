@@ -4,9 +4,16 @@ ul {
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
-	align-self: stretch;
+	width: min(72ch, 100%);
 }
 
 .filter-form {
 	padding: 1.5rem 0;
+	flex-direction: row;
+	gap: 1rem;
+	text-wrap: nowrap;
+}
+
+.filter-form button {
+	font-size: 1em;
 }

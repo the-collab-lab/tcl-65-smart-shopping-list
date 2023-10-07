@@ -129,9 +129,9 @@ select:hover {
 
 button {
 	vertical-align: baseline;
-	font-size: 1em;
 	border-radius: 4rem;
-	padding: 2rem;
+	font-size: 1.2em;
+	padding: 0.5rem 1rem;
 	/* setting the border to 0 and setting the border again removes the default bevel on the border outline */
 	border: 0;
 	border: 2px solid var(--color-text);
@@ -170,4 +170,10 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed; /* Optional: Keep the background fixed */
 	background-position: center center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
 }
