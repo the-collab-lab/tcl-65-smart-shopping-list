@@ -93,7 +93,7 @@ input[type='checkbox'] {
 }
 
 .ListItem button {
-	background-color: var(--color-contrast);
+	background-color: var(--delete-color);
 	vertical-align: baseline;
 	padding: 0.3rem 1rem;
 	border-radius: 2px;
@@ -102,5 +102,5 @@ input[type='checkbox'] {
 }
 
 .ListItem button:hover {
-	background-color: var(--color-bg);
+	background-color: var(--delete-hover-color);
 }

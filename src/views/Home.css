@@ -55,3 +55,8 @@ select {
 	margin-top: 1rem; /* Adds space above "-or-" */
 	margin-bottom: 1rem; /* Adds space below "-or-" */
 }
+
+input {
+	width: 80%;
+	margin: 0 auto 1.5rem auto;
+}
