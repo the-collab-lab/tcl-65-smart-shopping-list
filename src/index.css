@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Sanchez&display=swap');
+
 :root {
 	--color-black: hsla(220, 13%, 18%, 1);
 	--color-gray-dark: hsla(220, 13%, 25%, 1);
@@ -88,6 +90,16 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+	font-family: Pacifico;
+	font-size: 5rem;
+}
+
+a,
+h2 {
+	font-family: Sanchez, serif;
+}
+
 code {
 	--color-bg: var(--color-gray-dark);
 	--color-text: var(--color-accent);
@@ -136,6 +148,7 @@ button {
 	border: 0;
 	border: 2px solid var(--color-text);
 	border-color: var(--color-text);
+	font-family: Sanchez;
 }
 
 button:hover {
