@@ -22,6 +22,20 @@ export function Layout({ listToken }) {
 		alert('List Token copied to clipboard!');
 	};
 
+	const listTokenDisplay = (
+		<div className="list-token">
+			<p>
+				{listToken && 'Current list token: '}
+				<span>{listToken}</span>
+				{listToken && (
+					<button className="button-small" onClick={handleCopyToken}>
+						Copy Token
+					</button>
+				)}
+			</p>
+		</div>
+	);
+
 	return (
 		<>
 			<div className="Layout">
@@ -31,12 +45,7 @@ export function Layout({ listToken }) {
 						Welcome to your Smart shopping list that learns your buying habits
 						over time!
 					</h2>
-					<div className="list-token">
-						<span>{listToken}</span>
-						<button className="button-small" onClick={handleCopyToken}>
-							Copy Token
-						</button>
-					</div>
+					{listTokenDisplay}
 				</header>
 				<main className="Layout-main">
 					<Outlet />
