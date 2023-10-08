@@ -69,19 +69,7 @@ html {
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
-	font-family:
-		-apple-system,
-		BlinkMacSystemFont,
-		avenir next,
-		avenir,
-		segoe ui,
-		helvetica neue,
-		helvetica,
-		Ubuntu,
-		roboto,
-		noto,
-		arial,
-		sans-serif;
+	font-family: Sanchez, serif;
 	font-size: 1.8rem;
 	line-height: 1.4;
 	margin: 0;
@@ -93,11 +81,6 @@ body {
 h1 {
 	font-family: Pacifico;
 	font-size: 5rem;
-}
-
-a,
-h2 {
-	font-family: Sanchez, serif;
 }
 
 code {
