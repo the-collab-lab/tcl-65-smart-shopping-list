@@ -16,4 +16,10 @@ ul {
 
 .filter-form button {
 	font-size: 1em;
+	background-color: var(--delete-color);
+}
+
+.filter-form button:hover {
+	font-size: 1em;
+	background-color: var(--delete-hover-color);
 }
