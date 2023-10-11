@@ -163,9 +163,9 @@ select {
 	font-size: 1em;
 }
 body {
-	background-image: url('img/lemons-blk.png');
+	background-image: url('/lemons-blk.png');
 	@media screen and (prefers-color-scheme: light) {
-		background-image: url('img/lemons-wht.png');
+		background-image: url('/lemons-wht.png');
 	}
 
 	background-size: cover;
