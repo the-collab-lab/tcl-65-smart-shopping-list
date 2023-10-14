@@ -22,7 +22,6 @@
 	--color-contrast: hsl(var(--contrast-hsl-vals));
 
 	--shadow-hsl-vals: 18, 50%, 5%;
-	/*--background-image: url('https://imgur.com/Vkq9ZTg');*/
 
 	/* Isaiah added delete root color vars*/
 	--delete-color: hsl(0, 100%, 51%);
@@ -164,9 +163,9 @@ select {
 	font-size: 1em;
 }
 body {
-	background-image: url('_resources/images/lemons-blk.png');
+	background-image: url('/lemons-blk.png');
 	@media screen and (prefers-color-scheme: light) {
-		background-image: url('_resources/images/lemons-wht.png');
+		background-image: url('/lemons-wht.png');
 	}
 
 	background-size: cover;
