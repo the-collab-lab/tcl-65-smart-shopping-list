@@ -1,4 +1,3 @@
-import './AddItem.css';
 import React, { useState } from 'react';
 import { addItem } from '../api/firebase';
 import './AddItem.css';
