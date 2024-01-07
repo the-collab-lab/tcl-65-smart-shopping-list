@@ -11,8 +11,6 @@ import { useShoppingListData } from './api';
 
 import { useStateWithStorage } from './utils';
 
-import { generateToken } from '@the-collab-lab/shopping-list-utils';
-
 export function App() {
 	/**
 	 * This custom hook takes a token pointing to a shopping list
@@ -27,7 +25,8 @@ export function App() {
 	);
 
 	const handleNewToken = () => {
-		setListToken(generateToken());
+		// setListToken('the collab lab');
+		console.log('Creating new lists is no longer supported.');
 	};
 
 	/**

@@ -2,6 +2,7 @@ import './Home.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { checkCount } from '../api/firebase';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 export function Home({ listToken, setListToken, handleNewToken }) {
 	const [inputToken, setInputToken] = useState('');
@@ -110,5 +111,10 @@ export function Home({ listToken, setListToken, handleNewToken }) {
 		</>
 	);
 
-	return <div className="Home">{listToken ? welcomeBack : welcome}</div>;
+	return (
+		<div className="Home">
+			{listToken ? welcomeBack : welcome}
+			<ArchivalNoticeModal />
+		</div>
+	);
 }
